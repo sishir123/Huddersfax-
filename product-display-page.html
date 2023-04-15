@@ -50,7 +50,7 @@
   <body>
     <input type="checkbox" id="check" />
     <nav>
-      <a href="Homepage.html"><img src="images/logo.png" alt="logo" class="logo"></a>
+      <img src="images/logo.png" alt="" class="logo" />
       <div class="search_box">
         <input type="search" placeholder="Search entire store here" />
         <span class="fa fa-search"></span>
@@ -89,54 +89,84 @@
     </nav>
 
     <!-- Product-display-container -->
-
-    <div class="product-display-container">
-      <div class="product-display-img-container">
-        <img src="images/fish.jpg" alt="product-img" />
+    <div class="product-display-whole-container">
+      <div class="category-container">
+        <span>All Products</span>
+        <span class="category"
+          ><i class="fa-solid fa-chevron-right right-icon"></i>Fish</span
+        >
+        <span class="sub-category"
+          ><i class="fa-solid fa-chevron-right right-icon"></i>Fish Monger</span
+        >
       </div>
-      <div class="product-description">
-        <div class="product-item-name">
-          <p>
-            <strong>
-              1Kg fish
-          </strong>
-        </p>
+      <div class="product-display-container">
+        <div class="product-display-img-container">
+          <img src="images/fish.jpg" alt="product-img" />
+          <div class="review-rating">
+            <h3>Reviews</h3>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
         </div>
-        <div class="product-item-desc">
-          Fresh and best quality fish in the town
+        <div class="product-description">
+          <div class="product-item-name">
+            <p>
+              <strong> 1Kg fish </strong>
+            </p>
+          </div>
+          <div class="product-item-desc">
+            Fresh and best quality fish in the town
+          </div>
+          <div class="product-item-price">
+            $5 &nbsp; &nbsp;<s> $10 </s> &nbsp; -50%
+          </div>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="product-stock-checker">Stock available : 10</div>
+          <div class="product-add-to-cart">
+            <button class="btn btn1">
+              <i class="fa-solid fa-cart-shopping">Add to cart</i>
+            </button>
+          </div>
+          <div class="flex-horizontal">
+            <p>Available</p>
+            <p>Within 3-4 days</p>
+          </div>
+          <div class="product-features">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+            suscipit.<br />
+          </div>
+          <ul class="desc-list">
+            <li>
+              <i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet.
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet.
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet.
+            </li>
+          </ul>
         </div>
-        <div class="product-item-price">
-          <s>$ 10</s> &nbsp; &nbsp; &nbsp; $5 <br />
-        </div>
-        <div class="product-rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-        </div>
-        <div class="product-stock-checker">Stock available : Yes</div>
-        <div class="product-add-to-cart">
-          <i class="fa-solid fa-cart-shopping">Add to cart</i>
-        </div>
-        <div class="product-features">
-          Description<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
-          * Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-          possimus.<br />
+      </div>
+      <div class="promos-container">
+        <div class="promos-img">
+          <img
+            src="images/promos-img.jpg"
+            alt="promo-img"
+            class="promocode-img"
+          />
         </div>
       </div>
     </div>
-
     <!-- Subscribe Handlebar -->
 
     <div class="Subscribe-handlebar">
@@ -155,7 +185,8 @@
           placeholder="Enter your Email"
           class="Email-place"
         />
-        <a href="#" class="Subscribe-text"> Subscribe</a> <br /><br />
+        <a href="#" class="Subscribe-text"> Subscribe</a>
+        <br /><br />
       </div>
     </div>
 
