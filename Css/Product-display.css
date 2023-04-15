@@ -1,0 +1,10 @@
+.product-display-container{
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    gap: 50px;
+}
+
+.product-item-name p{
+    font-weight: 900;
+}

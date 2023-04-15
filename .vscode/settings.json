@@ -1,0 +1,7 @@
+{
+    "php.stubs": [
+        "*",
+        "oci8"
+    ],
+    "liveServer.settings.port": 5501
+}

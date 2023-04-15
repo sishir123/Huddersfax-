@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family */
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Montserrat";
+  font-size: 15px;
+  width: 100vw;
+}
+
+.cart-page-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  width: 90%;
+}
+.cart-page-container .header-text {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.cart-page-container .cart-page-text {
+  text-align: center;
+  font-weight: 900;
+}
+.cart-page-container .cart-page-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.493);
+}
+.cart-page-container .cart-page-item .cart-page-desc-container {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+.cart-page-container .cart-page-item .cart-page-desc-container .cart-page-img img {
+  height: 150px;
+  width: 150px;
+}
+.cart-page-container .cart-page-item .cart-page-desc-container .cart-page-desc .cart-page-item-text {
+  font-weight: 900;
+}
+.cart-page-container .cart-page-item .cart-page-desc-container .cart-page-desc .wrapper .num {
+  border: 1px solid black;
+  width: 100px;
+  padding: 0px 0px 0px 10px;
+}
+.cart-page-container .cart-page-item .cart-page-priceinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.cart-page-container .cart-page-item .cart-page-priceinfo .price-info {
+  text-align: center;
+}
+.cart-page-container .cart-checkout-container {
+  display: flex;
+  gap: 100px;
+}
+.cart-page-container .checkout-container {
+  width: 300px;
+}
+.cart-page-container .checkout-container .summary-info {
+  padding: 10px 30px;
+}
+.cart-page-container .checkout-container .summary-info .items-in-cart, .cart-page-container .checkout-container .summary-info .discount-in-cart, .cart-page-container .checkout-container .summary-info .price-info {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+.cart-page-container .checkout-container .summary-info .price-info {
+  padding: 10px 0;
+}
+.cart-page-container .checkout-container .summary-info .btn {
+  width: 100%;
+}
+.cart-page-container .cart-bottom-container {
+  margin-top: 30px;
+}
+.cart-page-container .cart-bottom-container .flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}/*# sourceMappingURL=cart.css.map */
