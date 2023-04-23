@@ -42,16 +42,16 @@
     <body>
         <input type="checkbox" id="check">
         <nav>
-            <a href="Homepage.html"><img src="images/logo.png" alt="logo" class="logo"></a>
+            <a href="Homepage.php"><img src="images/logo.png" alt="logo" class="logo"></a>
             
             <div class="search_box">
                 <input type="search" placeholder="Search entire store here">
                 <span class="fa fa-search"></span>
             </div>
             <ol>
-                <li><a href="Wishlistpage.html" class ="Hover-btn"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
-                <li><a href="Addtocart.html" class ="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
-                <li><a href="Login/index.html" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                <li><a href="Wishlistpage.php" class ="Hover-btn"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
+                <li><a href="Addtocart.php" class ="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                <li><a href="Login/index.php" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
                 <li>
 
                     <select name="categories-dropdown" id="categories">
@@ -130,7 +130,7 @@
             <div class="featured-products">
                 
                 <div class="card">
-                    <a href="product-display-page.html"><img src="images/fish.jpg" alt="crossiant-img"
+                    <a href="product-display-page.php"><img src="images/fish.jpg" alt="crossiant-img"
                         style="width:100%"></a>
                     
                     <div class="in-stock flex-verticle"><h6><B>Fish Monger</B>
@@ -367,7 +367,7 @@
                     Need Help?
                 </div>
                 <div class="middle">
-                    <a href="Contact-us-page.html"><button class="btn btn1">Contact Us</button></a>
+                    <a href="Contact-us-page.php"><button class="btn btn1">Contact Us</button></a>
                     
                     
                   </div>
@@ -375,7 +375,7 @@
 
             <div class="Links">
                 <ol>
-                    <li> <a href="Homepage.html" class="links-btn">Home</a> </li>
+                    <li> <a href="Homepage.php" class="links-btn">Home</a> </li>
                     <li> <a href="#" class="links-btn">Bakery</a> </li>
                     <li> <a href="#" class="links-btn">Butchers</a> </li>
                     <li> <a href="#" class="links-btn">Greengrocer</a> </li>
@@ -394,7 +394,7 @@
             </div>
             <div class="Huddersfax-mart Links">
                 <ol>
-                    <li> <a href="About-us.html" class="links-btn">About us</a> </li>
+                    <li> <a href="About-us.php" class="links-btn">About us</a> </li>
                     <li> <a href="#" class="links-btn">Terms of Service</a> </li>
                     <li> <a href="#" class="links-btn">Privacy policy</a> </li>
                     
