@@ -347,6 +347,7 @@
         <!-- Subscribe Handlebar -->
 
         <div class="Subscribe-handlebar">
+        
             <div class="updates">
                 <h6 class="big-text">Dont miss out any updated<br></h6>
                 <p class="short-text">Subscribe to Huddersfax mart. Get the
@@ -362,6 +363,7 @@
 
         <!-- footer -->
         <div class="footer-container">
+            
             <div class="Contact-row">
                 <div class="Needhelp-text">
                     Need Help?
