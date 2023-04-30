@@ -50,7 +50,7 @@
             <ol>
                 <li><a href="Wishlistpage.php" class ="Hover-btn"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
                 <li><a href="Addtocart.php" class ="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
-                <li><a href="Login/index.php" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                <li><a href="Login/login.php" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
                 <li>
 
                     <select name="categories-dropdown" id="categories">

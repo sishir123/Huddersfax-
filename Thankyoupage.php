@@ -46,9 +46,9 @@
                 <span class="fa fa-search"></span>
             </div>
             <ol>
-                <li><a href="#"><i class="fa-regular fa-heart"></i>Wishlist</a></li>
-                <li><a href="#"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
-                <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i>Login</a></li>
+                <li><a href="Wishlistpage.php"><i class="fa-regular fa-heart"></i>Wishlist</a></li>
+                <li><a href="Addtocart.php"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+                <li><a href="Login/login.php"><i class="fa-solid fa-right-to-bracket"></i>Login</a></li>
                 <li>
 
                     <select name="cars" id="cars">

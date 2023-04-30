@@ -67,11 +67,10 @@
             ><i class="fa-solid fa-cart-shopping"></i> Cart</a
           >
         </li>
-        <li>
-          <a href="Login/index.php" class="Hover-btn"
-            ><i class="fa-solid fa-right-to-bracket"></i> Login</a
-          >
-        </li>
+        
+        <li><a href="Login/login.php" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+
+       
         <li>
           <select name="categories-dropdown" id="categories">
             <option selected disabled value="">Categories</option>

@@ -4,5 +4,8 @@
         "oci8"
     ],
     "liveServer.settings.port": 5501,
-    "editor.defaultFormatter": "VisualStudioExptTeam.vscodeintellicode"
+    "editor.defaultFormatter": "VisualStudioExptTeam.vscodeintellicode",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
 }
