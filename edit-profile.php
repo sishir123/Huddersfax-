@@ -57,27 +57,16 @@
     </nav>
 
 
-    <!-- Profile edit section -->
+   <!-- Code from here -->
 
-    <h2>Manage your profile</h2>
-    <div class="container-form">
-    <div class="form-group">
-                <label for="first-name">Username</label>
-                <input type="text" placeholder="" name="username" id="username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" placeholder="" name="password" id="password">
-            </div>
-    <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" placeholder="" name="address" id="address">
-            </div>
-    <div class="form-group">
-                <label for="contactnum">Contact Number</label>
-                <input type="text" placeholder="" name="contactnum" id="contactnum">
-            </div>
-            </div>
+
+
+
+
+
+
+
+
     
     
 

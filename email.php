@@ -1,8 +1,8 @@
 <?php
 $to = 'kharelsishir1000@gmail.com';
-$subject = 'Test email';
-$message = "Hello World!\n\nThis is my first  mail.";
-$headers = "From: ksishir21@tbc.edu.np\r\nReply-To: ksishir21@tbc.edu.np";
+$subject = 'Huddersfax Verification';
+$message = "Hello Sir/Mam !\n\nThank you for choosing us. See you again soon.";
+$headers = "From: huddersfaxmart@gmail.com\r\nReply-To: kharelsishir1000@gmail.com";
 $mail_sent = mail( $to, $subject, $message, $headers );
         if($mail_sent==true){
             echo "Mail Sent";

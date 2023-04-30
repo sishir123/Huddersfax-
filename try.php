@@ -6,7 +6,6 @@ $query = oci_parse($conn, $sql);
 oci_execute($query);
 
 while ( $ok = oci_fetch_array($query)){
-   
     echo $ok['ORDER_ID'];
 }
 
