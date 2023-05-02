@@ -19,64 +19,14 @@
 </head>
 
 <body>
+    <?php
+    
+    $username_error = " ";
+
+    ?>
     <div id="container">
-
-        <div class="form-wrap">
-            <h1>Welcome. We make shopping easy for you.</h1>
-            <!-- <p>It's free and only takes a minute</p> -->
-            <form action="" method="POSt">
-                <div class="form-group">
-                    <?php
-                    if (isset($error)) {
-                        foreach ($error as $error) {
-                            echo '<span class="error-msg">' . $error . '</span>';
-                        }
-                    }
-                    ?>
-                    <!-- <label for="first-name"></label> -->
-                    <input type="text" placeholder="User name" name="username" id="username" value="<?php if (isset($_POST['username']))
-                                                                                                        echo $_POST['username']; ?>">
-
-                    <div class="form-group">
-                        <!-- <label for="password">Password</label> -->
-                        <input type="password" placeholder="Password" name="password" id="password" value="<?php if (isset($_POST['password']))
-                                                                                                                echo $_POST['password']; ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <!-- <label for="email">Email</label> -->
-                        <input type="email" placeholder="Email" name="email" id="email" value="<?php if (isset($_POST['email']))
-                                                                                                    echo $_POST['email']; ?>">
-                    </div>
-
-                    <!-- Address -->
-                    <div class="form-group">
-                        <!-- <label for="Address">Address</label> -->
-                        <input type="text" placeholder="Address" name="address" id="address" value="<?php if (isset($_POST['address']))
-                                                                                                        echo $_POST['address']; ?>">
-                    </div>
-
-                    <!-- Phone number -->
-                    <div class="form-group">
-                        <!-- <label for="PhoneNumber">Phone Number</label> -->
-                        <input type="text" placeholder="PhoneNumber" name="PhoneNumber" id="PhoneNumber" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>">
-                    </div>
-
-                    <!-- Checkbox -->
-                    
-                    <input type="checkbox" name="terms" value="accepted"> 
-
-                    <p>I accept the terms and conditions</p>
-                
-              
-                    <!-- Submit -->
-                    <input type="submit" value="Submit" class="btn btn1" name="submit">
-                    <h5>Already have a account?</h5>
-                    <a href="login.php" class="login-registration">Login here</a>
-            </form>
-        </div>
+        
         <?php
-
         if (isset($_POST['submit'])) {
             $username = $_POST['username'];
             $email = $_POST['email'];
@@ -85,18 +35,19 @@
             $PhoneNumber = $_POST['PhoneNumber'];
 
             // For username
+            $username_error = " ";
             if (!empty($username)) {
                 if (strlen($username) >= 6) {
                     if (ctype_alpha($username)) {
                         $validusername = $username;
                     } else {
-                        echo "<b>Username cannot be a number.</b></br>";
+                        $username_error = "<b>Username cannot be a number.</b></br>";
                     }
                 } else {
-                    echo "<b>Username is less than 6</b> </br>";
+                    $username_error = "<b>Username is less than 6</b> </br>";
                 }
             } else {
-                echo "<b>Your Username is empty</b> </br>";
+                $username_error = "<b>Your Username is empty</b> </br>";
             }
 
         ?>
@@ -155,18 +106,94 @@
 
             <!-- Inserting the data to db form registration form -->
         <?php
+        if ($username_error == " "){
+
+            // Verification code generator
+            $v_code = bin2hex(random_bytes(3));
+
             $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS) VALUES('USER', '1001','$username','$email', '$PhoneNumber','$password','$address')";
+            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE, IS_VERIFIED) VALUES('USER', '1001','$username','$email', '$PhoneNumber','$password','$address','$v_code', 0)";
             $queeryok = oci_parse($conn, $SQLI);
             oci_execute($queeryok);
 
             if ($queeryok) {
+                
                 echo "Registration Successfull";
+                $to = $email;
+                $subject = 'Huddersfax Verification';
+                $message = 'Hello Sir/Mam !\n\nThank you for choosing us.<br>Use this code for registration : '.$v_code;
+                $headers = "From: huddersfaxmart@gmail.com";
+                $mail_sent = mail($to, $subject, $message, $headers);
+                if ($mail_sent == true) {
+                    echo "Mail Sent";
+                } else {
+                    echo "Mail failed";
+                }
             } else {
                 echo " failed ";
             }
         }
+    }
         ?>
+
+<div class="form-wrap">
+    
+            <h1>Welcome. We make shopping easy for you.</h1>
+            <!-- <p>It's free and only takes a minute</p> -->
+            
+            <form action="" method="POSt">
+                <div class="form-group">
+                    <?php
+                    if (isset($error)) {
+                        foreach ($error as $error) {
+                            echo '<span class="error-msg">' . $error . '</span>';
+                        }
+                    }
+                    ?>
+                    <!-- <label for="first-name"></label> -->
+                    <input type="text" placeholder="User name" name="username" id="username" value="<?php if (isset($_POST['username']))
+                                                                                                        echo $_POST['username']; ?>">
+                                                                                                        <?php echo $username_error; ?>
+
+                    <div class="form-group">
+                        <!-- <label for="password">Password</label> -->
+                        <input type="password" placeholder="Password" name="password" id="password" value="<?php if (isset($_POST['password']))
+                                                                                                                echo $_POST['password']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <label for="email">Email</label> -->
+                        <input type="email" placeholder="Email" name="email" id="email" value="<?php if (isset($_POST['email']))
+                                                                                                    echo $_POST['email']; ?>">
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <!-- <label for="Address">Address</label> -->
+                        <input type="text" placeholder="Address" name="address" id="address" value="<?php if (isset($_POST['address']))
+                                                                                                        echo $_POST['address']; ?>">
+                    </div>
+
+                    <!-- Phone number -->
+                    <div class="form-group">
+                        <!-- <label for="PhoneNumber">Phone Number</label> -->
+                        <input type="text" placeholder="PhoneNumber" name="PhoneNumber" id="PhoneNumber" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>">
+                    </div>
+
+                    <!-- Checkbox -->
+                    
+                    <input type="checkbox" name="terms" value="accepted"> 
+
+                    <p>I accept the terms and conditions</p>
+                
+              
+                    <!-- Submit -->
+                    <input type="submit" value="Submit" class="btn btn1" name="submit">
+                    <h5>Already have a account?</h5>
+                    <a href="login.php" class="login-registration">Login here</a>
+            </form>
+
+        </div>
 
 
     </div>

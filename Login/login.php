@@ -32,8 +32,14 @@
                 <input type="password" placeholder="Password" name="password" id="password">
             </div>
             <input type="submit" value="submit" class="btn btn1" name="submit">
-            <h4>Already have a account?</h4>
-            <a href="registration.php">Register here</a>
+            <h4>Don't have a Account?</h4>
+            <a href="registration.php">Register Here</a><br>
+            <select name="categories-dropdown" id="categories">
+                    <option selected disabled value="">Role</option>
+                    <option value="">Customer</option>
+                    <option value="">Trader</option>
+                    <option value="">Admin</option>
+                </select>
             </form>
 
         </div>

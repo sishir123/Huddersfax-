@@ -1,0 +1,28 @@
+.containe-category{
+    display: flex;
+    gap: 45px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.cat-img{
+    width: 200px;
+    height: 200px;
+    margin-left: 48px;
+}
+
+/* for button */
+.bls{
+    margin-left: 45px;
+}
+
+/* Sort */
+.sort{
+    display: flex;
+    gap : 60px;
+}
+
+.ls-1{
+    margin-bottom: 40px;
+}
+ 
