@@ -92,9 +92,19 @@
       <div class="header-text">
         <h1 class="cart-page-text"><b>Checkout</b></h1>
       </div>
-      <div>
-      
+
+
+      <div class="info-1">
+        <div class="profile info">
+          <div class="flexing1">
+        <i class="fa-solid fa-user fa-beat"></i>
+        <p>Customer's name</p>
+        </div>
+        </div>
       </div>
+        <br>
+  
+       
       <div class="cart-checkout-container">
         <div>
           <div class="cart-items-container">
@@ -126,9 +136,7 @@
                       
                     />
                   </div>
-                  <div>
-                    <a href="">Remove </a>
-                  </div>
+                 
                 </div>
               </div>
               <div class="cart-page-priceinfo">
@@ -166,9 +174,7 @@
                       value="1"
                     />
                   </div>
-                  <div>
-                    <a href="">Remove </a>
-                  </div>
+                 
                 </div>
               </div>
               <div class="cart-page-priceinfo">
@@ -223,11 +229,17 @@
             <input type="radio" id="Paypal" name="Paypal" value="Paypal">
             <i class="fa-brands fa-paypal fa-beat-fade"></i>
               <label for="Paypal">Paypal</label><br>
-          </div><br>
-        <form><br>
+          </div>
+          
+          <button class="btn btn1 ok">Continue</button> 
+         
+        <form>
  
-          <input type="button" value="Continue" onclick="submitForm()">
-          <input type="button" value="Cancel" onclick="submitForm()"><br><br>
+         
+        
+         
+        <br>
+        <br>
           <p>By Clicking Continue,"I confirm that I am aware and accept that <br>I am obiliged
             to pay for my order.I accept the terms and conditions<br> and conditions and confirm that I have read the Privacy policy.
           </p>

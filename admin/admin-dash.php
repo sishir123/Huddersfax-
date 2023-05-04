@@ -37,7 +37,7 @@
                 <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
             </li>
             <li>
-                <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-arrow-right"></i> Login</a>
+                <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-user"></i> View Profile</a>
             </li>
 
             <li>
@@ -57,10 +57,10 @@
         <!-- Side nav -->
 
         <ul class="list-group">
+            <li class="list-group-item">Monitor Customer</li>
             <li class="list-group-item">Manage Products</li>
-            <li class="list-group-item">Generate Reports</li>
-            <li class="list-group-item">Generate Reports</li>
-            <li class="list-group-item">Generate Reports</li>
+            <li class="list-group-item"> Manage Shops</a></li>
+            <li class="list-group-item">Manage Traders</li>
             <li class="list-group-item">Generate Reports</li>
         </ul>
     </div>

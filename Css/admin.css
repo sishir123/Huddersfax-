@@ -17,3 +17,7 @@
     margin-inline-end: 1000px;
     padding-inline-start: 40px;
 }
+
+.card .hey{
+    display: none;
+}

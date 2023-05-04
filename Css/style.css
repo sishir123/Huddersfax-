@@ -562,7 +562,11 @@ input[type="checkbox"] {
     margin-bottom: 100px;
 }
 
-/* Profile Edit section */
 
+/* Checkout page */
+.flexing1 {
+    display: flex;
+    gap: 20px;
+}
 
     

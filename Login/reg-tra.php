@@ -110,18 +110,17 @@
 
             // Verification code generator
             $v_code = bin2hex(random_bytes(3));
-
             $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('USER', '1001','$username','$email', '$PhoneNumber','$password','$address','$v_code')";
+            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('TRADER', '1002', '$username','$email', '$PhoneNumber','$password','$address','$v_code')";  //Change here
             $queeryok = oci_parse($conn, $SQLI);
             oci_execute($queeryok);
 
             if ($queeryok) {
                 
-                
+                echo "Registration Successfull";
                 $to = $email;
                 $subject = 'Huddersfax Verification';
-                $message = 'Hello Sir/Mam ! Thank you for choosing us."<br>"Use this code for registration : '.$v_code;
+                $message = 'Hello Sir/Mam !\n\nThank you for choosing us.<br>Use this code for registration : '.$v_code;
                 $headers = "From: huddersfaxmart@gmail.com";
                 $mail_sent = mail($to, $subject, $message, $headers);
                 if ($mail_sent == true) {
@@ -129,8 +128,6 @@
                 } else {
                     echo "Mail failed";
                 }
-                echo "Registration Success";
-                header("Location: ./reg2.php");
             } else {
                 echo " failed ";
             }
