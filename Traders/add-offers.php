@@ -1,3 +1,8 @@
+<?php
+include('../session.php');
+include('./session-trader.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,8 @@
     <title>Document</title>
 </head>
 <body>
+<button><a href="Manage-offers.php">Back to Offer</a></button>
+
     <?php
     if(isset($_POST['submit'])){
 
@@ -17,6 +24,7 @@
      $SQLI = "INSERT INTO OFFER(OFFER_START_DATE, OFFER_END_DATE, OFFER_PERCENTAGE) VALUES('$Offerstartdate', '$Offerenddate','$Offerpercentage')";
      $queeryok = oci_parse($conn, $SQLI);
      oci_execute($queeryok);
+     echo "Offer created successfully";
     }
     ?>
 

@@ -1,3 +1,21 @@
+<?php
+include('../session.php');
+include('./session-trader.php');
+
+$session_var = $_SESSION['id'];
+$conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+$SQLI = "SELECT * FROM PRODUCT_CATEGORY WHERE FK1_USER_ID = '$session_var'";
+$query = oci_parse($conn, $SQLI);
+oci_execute($query);
+
+if($query){
+   $store_var =  oci_fetch_array($query);
+   $filler = $store_var['PRODUCT_CATEGORY_ID'];
+   $_SESSION['Category'] = $filler;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -35,14 +53,14 @@
         <a href="Homepage.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
             <li>
-                <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
+                <a href="" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
             </li>
             <li>
-            <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-user"></i> View Profile</a>
+            <a href="" class="Hover-btn"><i class="fa-solid fa-user"></i> View Profile</a>
             </li>
 
             <li>
-                <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-arrow-left"></i></i> Logout</a>
+                <a href="../logout.php" class="Hover-btn"><i class="fa-solid fa-arrow-left"></i></i>Logout</a>
             </li>
 
         </ol>
@@ -61,7 +79,7 @@
         <button class="list-group-item"> <a href="./Dashboard.php"> Dashboard</a></button>
             <button class="list-group-item"> <a href="./Manage-products.php">Manage Products</a> </button>
             <button class="list-group-item"> <a href="./Manage-offers.php">Manage Offers </a></button>
-            <button class="list-group-item">Manage Categories</button>
+            <button class="list-group-item"> <a href="./Managecategories/manage-cat.php">Manage Categories</a></button>
             <button class="list-group-item"><a href="Manage-shop.php">Manage Shops</a></button>
             <button class="list-group-item">View Report</button>
 </ul>

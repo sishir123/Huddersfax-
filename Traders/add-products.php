@@ -1,3 +1,22 @@
+<?php
+include('../session.php');
+include('./session-trader.php');
+
+$Category = $_SESSION['Category'];
+$session_var = $_SESSION['id'];
+$conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+$SQLI = "SELECT * FROM SHOP WHERE FK1_USER_ID = '$session_var'";
+$query = oci_parse($conn, $SQLI);
+oci_execute($query);
+
+if($query){
+  $store_var =  oci_fetch_array($query);
+  $filler = $store_var['SHOP_ID'];
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +41,11 @@
         $folder = './pro-img/' . $Productimg;
         move_uploaded_file($tempname, $folder);
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER,   PRODUCT_IMAGE, FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg', '402', '804')";
+     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$filler','$Category', 'allergy-info')";
      $queeryok = oci_parse($conn, $SQLI);
      oci_execute($queeryok);
     }
+    
     ?>
 
 <form method="post" enctype="multipart/form-data">

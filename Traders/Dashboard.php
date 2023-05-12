@@ -59,52 +59,40 @@
 
         <ul class="list-group">
         <button class="list-group-item"> <a href="./Dashboard.php"> Dashboard</a></button>
+        <button class="list-group-item"> <a href="./Managecategories/manage-cat.php">Manage Categories</a></button>
             <button class="list-group-item"> <a href="./Manage-products.php">Manage Products</a> </button>
             <button class="list-group-item"> <a href="./Manage-offers.php">Manage Offers </a></button>
-            <button class="list-group-item">Manage Categories</button>
             <button class="list-group-item"><a href="Manage-shop.php">Manage Shops</a></button>
             <button class="list-group-item">View Report</button>
 </ul>
 
     </div>
-
-    <div class="card text-white bg-primary mb-3 hey" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
+<div class="ana-container">
+<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+  
   <div class="card-body">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Secondary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">Total Products</h5>
+    <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12</p>
   </div>
 </div>
 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
+  
   <div class="card-body">
-    <h5 class="card-title">Success card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">Running Offers</h5>
+    <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p>
   </div>
 </div>
-<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
+<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Danger card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Warning card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">Total Shops&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+    <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8</p>
   </div>
 </div>
 </div>
 </div>
+
+
+
 
 </body>
 

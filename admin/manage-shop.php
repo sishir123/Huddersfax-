@@ -1,9 +1,6 @@
 <?php
 include('../session.php');
-include('./session-trader.php');
-
-$userid =  $_SESSION['id'];
-
+include('./session-admin.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,37 +14,44 @@ $userid =  $_SESSION['id'];
 </head>
 <body>
 
-<button><a href="add-shop.php"> Add Shop</a></button>
+<button><a href="./admin-dash.php"> Dashboard</a></button>
+<button><a href="./Verify-shops.php"> Verify</a></button>
+
 <table class="table table-hover">
   <tr>
     <th>Shop Name</th>
     <th>Shop Address</th>
     <th>Shop Phone Number</th>
     <th>Shop Email</th>
-    <th>Delete</th>
+    <th>Status</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM SHOP WHERE FK1_USER_ID =  '$userid' ";
+ $SQLI = "SELECT * FROM SHOP";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
- while ($values = oci_fetch_array($queeryok)) {
-    if($values['STATUS'] == 1){
-
+ while ($value = oci_fetch_array($queeryok)) {
+    if($value['STATUS'] == 1){
    
     echo '
     <tr>
-    <td>'.$values['SHOP_NAME'].'</td>
-    <td>'.$values['SHOP_ADDRESS'].'</td>
-    <td>'.$values['SHOP_PHONE_NUMBER'].'</td>
-    <td>'.$values['SHOP_EMAIL'].'</td>
-    <td> <a href = "delete-shop.php?id='.$values['SHOP_ID'].' ">Delete</a></td>
-
-</tr>
-    ';
-}
-    
+    <td>'.$value['SHOP_NAME'].'</td>
+    <td>'.$value['SHOP_ADDRESS'].'</td>
+    <td>'.$value['SHOP_PHONE_NUMBER'].'</td>
+    <td>'.$value['SHOP_EMAIL'].'</td>
+    <td> <a href = "deactivate-shop.php?id='.$value['SHOP_ID'].' ">Activate</a></td>
+</tr>';
+    }
+    if($value['STATUS'] == 2){
+        echo '
+        <tr>
+        <td>'.$value['SHOP_NAME'].'</td>
+        <td>'.$value['SHOP_ADDRESS'].'</td>
+        <td>'.$value['SHOP_PHONE_NUMBER'].'</td>
+        <td>'.$value['SHOP_EMAIL'].'</td>
+        <td> <a href = "Activate-shop.php?id='.$value['SHOP_ID'].' ">Deactivate</a></td></tr>';
+        }
  }
 
 ?>

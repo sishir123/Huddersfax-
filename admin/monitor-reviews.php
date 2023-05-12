@@ -1,6 +1,6 @@
 <?php
 include('../session.php');
-include('./session-trader.php');
+include('./session-admin.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,36 +14,29 @@ include('./session-trader.php');
 </head>
 <body>
 
-<button><a href="add-offers.php">Add Offers</a></button>
-<button><a href="trader-dash.php">Dashboard</a></button>
 <table class="table table-hover">
   <tr>
-    <th>Offer Start Date</th>
-    <th>Offer End Date</th>
-    <th>Offer Percentage</th>
+    <th>Review Date</th>
+    <th>Review</th>
+    <th>Review Rating</th>
     <th>Delete</th>
-    <th>Update</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM OFFER";
+ $SQLI = "SELECT * FROM REVIEW";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
  while ($value = oci_fetch_array($queeryok)) {
     echo '
     <tr>
-    <td>'.$value['OFFER_START_DATE'].'</td>
-    <td>'.$value['OFFER_END_DATE'].'</td>
-    <td>'.$value['OFFER_PERCENTAGE'].'</td>
-    <td> <a href = "update-offers.php?id=' . $value['OFFER_ID'] . ' ">Update</a></td>    
-    <td> <a href = "delete-offers.php?id='.$value['OFFER_ID'].' ">Delete</a></td>
-
+    <td>'.$value['REVIEW_DATE'].'</td>
+    <td>'.$value['REVIEW_FEEDBACK'].'</td>
+    <td>'.$value['REVIEW_RATING'].'</td>
+    <td> <a href = "delete-review.php?id='.$value['REVIEW_ID'].' ">Delete</a></td>
 </tr>
-    ';
-    
+    '; 
  }
-
 ?>
    
 </table>

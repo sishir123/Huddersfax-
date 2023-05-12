@@ -1,6 +1,10 @@
+<?php
+include('../session.php');
+include('./session-admin.php');
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <title>Huddersfax Mart</title>
@@ -41,7 +45,7 @@
             </li>
 
             <li>
-                <a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-arrow-left"></i></i> Logout</a>
+                <a href="../logout.php" class="Hover-btn"><i class="fa-solid fa-arrow-left"></i></i> Logout</a>
             </li>
 
         </ol>
@@ -57,10 +61,11 @@
         <!-- Side nav -->
 
         <ul class="list-group">
-            <li class="list-group-item">Monitor Customer</li>
-            <li class="list-group-item">Manage Products</li>
-            <li class="list-group-item"> Manage Shops</a></li>
-            <li class="list-group-item">Manage Traders</li>
+            <li class="list-group-item"> <a href="./monitor-customer.php">Monitor Customer</a></li>
+            <li class="list-group-item"> <a href="./monitor-reviews.php">Monitor Reviews</a></li>
+            <li class="list-group-item"> <a href="./manage-prod-admin.php"> Manage Products</a></li>
+            <li class="list-group-item"> <a href="./manage-shop.php"> Manage Shops</a></li>
+            <li class="list-group-item"> <a href="./Manage-traders.php"> Manage Traders</a></li>
             <li class="list-group-item">Generate Reports</li>
         </ul>
     </div>

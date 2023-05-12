@@ -1,7 +1,8 @@
 <?php
 include('../session.php');
-include('./session-trader.php');
+include('./session-admin.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,33 +15,44 @@ include('./session-trader.php');
 </head>
 <body>
 
-<button><a href="add-offers.php">Add Offers</a></button>
-<button><a href="trader-dash.php">Dashboard</a></button>
+
 <table class="table table-hover">
   <tr>
-    <th>Offer Start Date</th>
-    <th>Offer End Date</th>
-    <th>Offer Percentage</th>
-    <th>Delete</th>
-    <th>Update</th>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Address</th>
+    <th>Status</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM OFFER";
+ $SQLI = "SELECT * FROM S_USER WHERE USER_ROLE = 'USER' ";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
  while ($value = oci_fetch_array($queeryok)) {
+    if($value['IS_VERIFIED'] == 1){
+
+   
     echo '
     <tr>
-    <td>'.$value['OFFER_START_DATE'].'</td>
-    <td>'.$value['OFFER_END_DATE'].'</td>
-    <td>'.$value['OFFER_PERCENTAGE'].'</td>
-    <td> <a href = "update-offers.php?id=' . $value['OFFER_ID'] . ' ">Update</a></td>    
-    <td> <a href = "delete-offers.php?id='.$value['OFFER_ID'].' ">Delete</a></td>
+    <td>'.$value['USER_NAME'].'</td>
+    <td>'.$value['EMAIL'].'</td>
+    <td>'.$value['PHONENUMBER'].'</td>
+    <td>'.$value['ADDRESS'].'</td>
+    <td> <a href = "Deactivate-customer-admin.php?id='.$value['USER_ID'].' ">Activate</a></td></tr>';
+}
+if($value['IS_VERIFIED'] == 2){
 
-</tr>
-    ';
+   
+    echo '
+    <tr>
+    <td>'.$value['USER_NAME'].'</td>
+    <td>'.$value['EMAIL'].'</td>
+    <td>'.$value['PHONENUMBER'].'</td>
+    <td>'.$value['ADDRESS'].'</td>
+    <td> <a href = "Activate-customer-admin.php?id='.$value['USER_ID'].' ">DeActivate</a></td></tr>';
+    }
     
  }
 

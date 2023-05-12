@@ -18,6 +18,26 @@
     padding-inline-start: 40px;
 }
 
-.card .hey{
-    display: none;
+
+
+/* Analytics */
+
+.ana-container{
+    display: flex;
+    gap: 200px;
+    margin-left: 500px;
+    
+    
 }
+
+.card{
+  margin-top: -200px;
+  padding-bottom: -300px;
+   
+}
+
+.card-body{
+    
+
+}
+

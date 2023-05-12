@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -108,6 +112,9 @@
 
 
     <!-- Category-product -->
+
+
+
     <div class="featured-product-container">
         <div class="featured-products">
             <div class="card">
@@ -126,6 +133,7 @@
                 </div>
             </div>
         </div>
+    
         <div class="featured-products">
 
             <div class="card">

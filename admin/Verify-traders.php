@@ -1,6 +1,6 @@
 <?php
 include('../session.php');
-include('./session-trader.php');
+include('./session-admin.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,39 +10,45 @@ include('./session-trader.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Document</title>
 </head>
 <body>
 
-<button><a href="add-offers.php">Add Offers</a></button>
-<button><a href="trader-dash.php">Dashboard</a></button>
+<button><a href="./admin-dash.php"> Dashboard</a></button>
+
 <table class="table table-hover">
   <tr>
-    <th>Offer Start Date</th>
-    <th>Offer End Date</th>
-    <th>Offer Percentage</th>
-    <th>Delete</th>
-    <th>Update</th>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Address</th>
+    <th>Approval</th>
+    <th>Declined</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM OFFER";
+ $SQLI = "SELECT * FROM S_USER WHERE USER_ROLE = 'TRADER' ";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
+
  while ($value = oci_fetch_array($queeryok)) {
+    if($value['IS_VERIFIED'] == 0){
     echo '
     <tr>
-    <td>'.$value['OFFER_START_DATE'].'</td>
-    <td>'.$value['OFFER_END_DATE'].'</td>
-    <td>'.$value['OFFER_PERCENTAGE'].'</td>
-    <td> <a href = "update-offers.php?id=' . $value['OFFER_ID'] . ' ">Update</a></td>    
-    <td> <a href = "delete-offers.php?id='.$value['OFFER_ID'].' ">Delete</a></td>
-
-</tr>
-    ';
+    <td>'.$value['USER_NAME'].'</td>
+    <td>'.$value['EMAIL'].'</td>
+    <td>'.$value['PHONENUMBER'].'</td>
+    <td>'.$value['ADDRESS'].'</td>
+    <td> <a href = "./Verify-traders/Approve.php?id='.$value['USER_ID'].' ">Approve</a></td>
+    <td> <a href = "./Verify-traders/Decline.php?id='.$value['USER_ID'].' ">Decline</a></td></tr>';
     
  }
+
+
+ 
+}
 
 ?>
    

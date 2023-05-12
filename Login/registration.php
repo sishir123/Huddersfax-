@@ -1,7 +1,4 @@
-<!--Connection-->
-<?php
-@include 'Connect/connect.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,7 +109,7 @@
             $v_code = bin2hex(random_bytes(3));
 
             $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('USER', '1001','$username','$email', '$PhoneNumber','$password','$address','$v_code')";
+            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('USER', '$username','$email', '$PhoneNumber','$password','$address','$v_code')";
             $queeryok = oci_parse($conn, $SQLI);
             oci_execute($queeryok);
 
@@ -193,6 +190,7 @@
                     <input type="submit" value="Submit" class="btn btn1" name="submit">
                     <h5>Already have a account?</h5>
                     <a href="login.php" class="login-registration">Login here</a>
+                    <a href="../Login/reg-tra.php" class="">Register as Trader</a>
             </form>
 
         </div>

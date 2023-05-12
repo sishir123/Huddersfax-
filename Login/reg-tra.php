@@ -1,7 +1,4 @@
-<!--Connection-->
-<?php
-@include 'Connect/connect.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +108,7 @@
             // Verification code generator
             $v_code = bin2hex(random_bytes(3));
             $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_ID, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('TRADER', '1002', '$username','$email', '$PhoneNumber','$password','$address','$v_code')";  //Change here
+            $SQLI = "INSERT INTO S_USER(USER_ROLE, USER_NAME, EMAIL, PHONENUMBER, PASSWORD, ADDRESS, CODE) VALUES('TRADER', '$username','$email', '$PhoneNumber','$password','$address','$v_code')";  //Change here
             $queeryok = oci_parse($conn, $SQLI);
             oci_execute($queeryok);
 

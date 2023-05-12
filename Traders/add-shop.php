@@ -1,3 +1,11 @@
+<?php
+include('../session.php');
+include('./session-trader.php');
+
+
+$userid = $_SESSION['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +20,10 @@
 
     $shopname = $_POST['shopname'];
     $shopaddress = $_POST['shopaddress'];
-    $shoptype = $_POST['shoptype'];
     $shopphonenumber = $_POST['shopphonenumber'];
     $shopemail = $_POST['shopemail'];
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO SHOP(SHOP_NAME, SHOP_ADDRESS, SHOP_TYPE, SHOP_PHONE_NUMBER, SHOP_EMAIL, FK1_USER_ID) VALUES('$shopname', '$shopaddress','$shoptype','$shopphonenumber', '$shopemail', '213')";
+     $SQLI = "INSERT INTO SHOP(SHOP_NAME, SHOP_ADDRESS, SHOP_PHONE_NUMBER, SHOP_EMAIL, FK1_USER_ID, STATUS) VALUES('$shopname', '$shopaddress','$shopphonenumber', '$shopemail', '$userid' ,0)";
      $queeryok = oci_parse($conn, $SQLI);
      oci_execute($queeryok);
     }
@@ -30,10 +37,6 @@
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">SHOP_ADDRESS</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="shopaddress">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">SHOP_TYPE</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="shoptype">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">SHOP_PHONE_NUMBER</label>

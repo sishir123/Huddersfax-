@@ -1,6 +1,6 @@
 <!--Connection-->
 <?php
-@include 'Connect/connect.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +34,6 @@
             <input type="submit" value="submit" class="btn btn1" name="submit">
             <h4>Don't have a Account?</h4>
             <a href="registration.php">Register Here</a><br>
-            <select name="categories-dropdown" id="categories">
-                    <option selected disabled value="">Role</option>
-                    <option value="">Customer</option>
-                    <option value="">Trader</option>
-                    <option value="">Admin</option>
-                </select>
             </form>
 
         </div>
@@ -55,12 +49,15 @@
 
             if(oci_execute($queryplz)){
                 $value = oci_fetch_array($queryplz);
+                $role = $value['USER_ROLE'];
+                $_SESSION['user']=$username;
+                $_SESSION['email']=$value['EMAIL'];
+                $_SESSION['role']=$value['USER_ROLE'];
+                $_SESSION['id'] = $value['USER_ID'];
 
-                if($value['USER_ROLE'] == 'USER' && $value['IS_VERIFIED'] == 1 ) {
+                if($value['IS_VERIFIED'] == 1 && $role == 'USER') {
                     echo "<script>window.location.href = '../Homepage.php';</script>";
-                   
-                    
-
+         
                 }elseif($value['USER_ROLE'] == 'TRADER' && $value['IS_VERIFIED'] == 1){
                     echo "<script>window.location.href = '../Traders/trader-dash.php';</script>";
                 
@@ -69,10 +66,10 @@
                 }
                 
                 else{
-                    echo " User not found  ";
+                    echo "User not found";
                 }
             }else{
-                echo " Excecute failed ";
+                echo "Excecute failed";
             }
             
         } 

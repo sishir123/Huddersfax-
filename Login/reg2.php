@@ -1,10 +1,6 @@
 <form action="" method="post">
-
  <input type="text" name="Registerhere" placeholder="Enter your code:">
  <input type="submit" name="codesubmit" value="submit">
-
-
-
 </form>
 
 <?php

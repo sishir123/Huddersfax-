@@ -1,6 +1,9 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Huddersfax Mart</title>
@@ -37,7 +40,16 @@
         <ol>
             <li><a href="Wishlistpage.php" class="Hover-btn"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
             <li><a href="Addtocart.php" class="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+            <?php
+            if(isset($_SESSION['user']) && isset($_SESSION['email']) && $_SESSION['role'] == 'USER'){
+                echo '<li><a href="#" class="Hover-btn"><i class="fa-solid fa-right-to-profile"></i> Profile</a></li>';
+                echo '<li><a href="./logout.php" class="Hover-btn"><i class="fa-solid fa-right-to-profile"></i> Logout</a></li>';
+            }else{
+            ?>
             <li><a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            <?php
+            }
+            ?>
             <li>
 
                 <select name="categories-dropdown" id="categories">
@@ -109,6 +121,7 @@
                 </div>
             </div>
         </div>
+    
         <div class="featured-products">
 
             <div class="card">
@@ -171,7 +184,7 @@
     <div class="Category-highlight">
         <div class="category-title">
             <ol>
-                <li><a href="#">All products</a></li>
+                <li><a href="./Category-display-page.php">All products</a></li>
                 <li><a href="#">Bakery</a></li>
                 <li><a href="#">Butchers</a></li>
                 <li><a href="#">Green Grocer</a></li>
@@ -182,6 +195,8 @@
     </div>
 
     <!-- Category-product -->
+
+
     <div class="featured-product-container">
         <div class="featured-products">
             <div class="card">
@@ -406,6 +421,7 @@
 
 
     </div>
+    
 </body>
 
 <head>
