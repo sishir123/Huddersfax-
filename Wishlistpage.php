@@ -1,6 +1,11 @@
 <?php
 session_start();
+if(isset($_SESSION['id'])){
+  $userid = $_SESSION['id'];
+
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,8 +22,9 @@ session_start();
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Css/wishlist.css" />
-    <link rel="stylesheet" href="Css/style.css" />
+    <link rel="stylesheet" href="Css/wishlist.css?v=<?php echo time(); ?>" />
+
+    <link href="Css/style.css?v=<?php echo time(); ?>" rel="stylesheet"/>
 
     <!-- Bootstrap scripts -->
     <script
@@ -52,118 +58,73 @@ session_start();
     />
   </head>
   <body>
-    <input type="checkbox" id="check" />
-    <nav>
-      <a href="Homepage.php"><img src="images/logo.png" alt="logo" class="logo"></a>
-      <div class="search_box">
-        <input type="search" placeholder="Search entire store here" />
-        <span class="fa fa-search"></span>
-      </div>
-      <ol>
-        <li>
-          <a href="Wishlistpage.php" class="Hover-btn"
-            ><i class="fa-regular fa-heart"></i> Wishlist</a
-          >
-        </li>
-        <li>
-          <a href="Addtocart.php" class="Hover-btn"
-            ><i class="fa-solid fa-cart-shopping"></i> Cart</a
-          >
-        </li>
-        <li>
-          <a href="Login/login.php" class="Hover-btn"
-            ><i class="fa-solid fa-right-to-bracket"></i> Login</a
-          >
-        </li>
-        <li>
-          <select name="categories-dropdown" id="categories">
-            <option selected disabled value="">Categories</option>
-            <option value="">Bakery</option>
-            <option value="">Butcher</option>
-            <option value="">Green Grocer</option>
-            <option value="">Fish Monger</option>
-            <option value="">Delicatessen</option>
-          </select>
-        </li>
-      </ol>
-      <label for="check" class="bar">
-        <span class="fa fa-bars" id="bars"></span>
-        <span class="fa fa-times" id="times"></span>
-      </label>
-    </nav>
+  <?php
+    include('./header.php');
+?>
 
-    <!-- Wishlist Box -->
-
-    <div class="wishlist-container">
       <div class="header-text">
         <h1 class="wishlist-text">My Wishlist</h1>
       </div>
 
+    <!-- Wishlist Box -->
+    <?php
+     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+    $SQL = "SELECT * FROM WISHLIST_PRODUCT WHERE WISHLIST_ID =(SELECT WISHLIST_ID FROM WISHLIST WHERE FK1_USER_ID = '$userid') ";
+    $queery = oci_parse($conn, $SQL);
+    oci_execute($queery);
+         
+    echo ' ';
+    if($queery){
+    for ($i=0; $i<=20 && $value = oci_fetch_array($queery); $i++){
+      $wishlist= $value['WISHLIST_ID'];
+      $product= $value['PRODUCT_ID'];
+      $SQLII = "SELECT * FROM PRODUCT WHERE PRODUCT_ID='$product'";
+      $queerrrry = oci_parse($conn,$SQLII);
+      oci_execute($queerrrry);
+      if($queerrrry){
+      for ($j=0; $j<=20 && $values = oci_fetch_array($queerrrry); $j++){
+      echo '
+
+   
+      <div class="wishlist-container">
+
       <div class="wishlist-item">
         <div class="wishlist-desc-container">
           <div class="wishlist-img">
-            <img src="images/fish.jpg" alt="product-img" />
+           <img src=./Traders/pro-img/'.$values['PRODUCT_IMAGE'].' alt="product-img" height="100px" width="100px"/>
           </div>
           <div class="wishlist-desc">
             <div class="wishlist-item-name">
-              <h5 class="wishlist-item-text">1Kg Fresh Fish</h5>
+              <h5 class="wishlist-item-text">'.$values['PRODUCT_NAME'].'</h5>
             </div>
 
             <div class="wishlist-description">
               <p class="wishlist-desc-text">
-                Fresh and best quality fish in the town
+                '.$values['PRODUCT_DESCRIPTION'].'
               </p>
             </div>
             <div class="wishlist-instock">
               <p class="wishlist-instock-text">In stock</p>
             </div>
-            <div class="wrapper">
-                <input type="number" min="0" max="100" class="num" value="1" >
-            </div>
+           
           </div>
           
         </div>
         <div class="wishlist-priceinfo">
-            <i class="fa-regular fa-heart fa-2x"></i>
+        <a href = "delete-wish.php?id=' . $values['PRODUCT_ID'] .' "<i class="fa-regular fa-heart fa-2x"></i></a>
             <p class="price-info">
                 <s>$ 10</s>&nbsp;$5 <br />
                 Discount applied : $5
              </p>
           </div>
       </div>
-      <div class="wishlist-item">
-        <div class="wishlist-desc-container">
-          <div class="wishlist-img">
-            <img src="images/fish.jpg" alt="product-img" />
-          </div>
-          <div class="wishlist-desc">
-            <div class="wishlist-item-name">
-              <h5 class="wishlist-item-text">1Kg Fresh Fish</h5>
-            </div>
-
-            <div class="wishlist-description">
-              <p class="wishlist-desc-text">
-                Fresh and best quality fish in the town
-              </p>
-            </div>
-            <div class="wishlist-instock">
-              <p class="wishlist-instock-text">In stock</p>
-            </div>
-            <div class="wrapper">
-                <input type="number" min="0" max="100" class="num" value="1" >
-            </div>
-          </div>
-          
-        </div>
-        <div class="wishlist-priceinfo">
-            <i class="fa-regular fa-heart fa-2x"></i>
-            <p class="price-info">
-                <s>$ 10</s>&nbsp;$5 <br />
-                Discount applied : $5
-             </p>
-          </div>
-      </div>
-    </div>
+      
+    </div>';
+      }
+    }
+    }
+  }
+    ?>
 
     <!-- Subscribe Handlebar -->
 

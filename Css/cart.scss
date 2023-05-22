@@ -76,6 +76,8 @@ body {
   }
   .checkout-container{
     width: 300px;
+    display: none;
+
     .summary-info{
         padding: 10px 30px;
         .items-in-cart,.discount-in-cart,.price-info{

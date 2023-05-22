@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION['id'])) {
+    $userid = $_SESSION['id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +16,8 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Css/style.css">
+    <!-- <link rel="stylesheet" href="Css/style.css"> -->
+    <link href="Css/style.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="Css/Category-display.css">
 
     <!-- Bootstrap scripts -->
@@ -31,81 +35,57 @@ session_start();
 </head>
 
 <body>
-    <input type="checkbox" id="check">
-    <nav>
-        <a href="Homepage.php"><img src="images/logo.png" alt="logo" class="logo"></a>
-
-        <div class="search_box">
-            <input type="search" placeholder="Search entire store here">
-            <span class="fa fa-search"></span>
-        </div>
-        <ol>
-            <li><a href="Wishlistpage.php" class="Hover-btn"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
-            <li><a href="Addtocart.php" class="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
-            <li><a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-            <li>
-
-                <select name="categories-dropdown" id="categories">
-                    <option selected disabled value="">Categories</option>
-                    <option value="">Bakery</option>
-                    <option value="">Butcher</option>
-                    <option value="">Green Grocer</option>
-                    <option value="">Fish Monger</option>
-                    <option value="">Delicatessen</option>
-                </select>
-            </li>
-        </ol>
-    </nav>
+    <?php
+    include('./header.php');
+    ?>
 
     <!-- Category selector -->
-
-    <div class="containe-category">
+    <!-- <div class="containe-category">
         <div class="bakery">
-            <img src="images/bakery.png" alt="Bakery img" class="cat-img">
             <button class="btn btn1 bls">Bakery</button>
         </div>
         <div class="Fishmonger">
-            <img src="images/fishmonger.png" alt="Bakery img" class="cat-img">
             <button class="btn btn1 bls">Fishmonger</button>
         </div>
         <div class="Butcher">
-            <img src="images/Butcher.png" alt="Bakery img" class="cat-img">
             <button class="btn btn1 bls">Butcher</button>
         </div>
         <div class="Delicatessen">
-            <img src="images/Delicatessen.png" alt="Bakery img" class="cat-img">
             <button class="btn btn1 bls">Delicatessen</button>
         </div>
         <div class="Green Grocer">
-            <img src="images/green grocer.png" alt="Bakery img" class="cat-img">
             <button class="btn btn1 bls">Green Grocer</button>
         </div>
     </div>
+    -->
+
+
 
 
     <!-- Category Highlight -->
     <div class="sort">
         <p class="featured-text ls-1">Category Highlight</p>
         <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Price
-  </a>
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Price
+            </a>
 
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Low to High</a></li>
-    <li><a class="dropdown-item" href="#">High to Low</a></li>
-  </ul>
-</div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Low to High</a></li>
+                <li><a class="dropdown-item" href="#">High to Low</a></li>
+            </ul>
+        </div>
         <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Alfabetically
-  </a>
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Alfabetically
+            </a>
 
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">A - Z</a></li>
-    <li><a class="dropdown-item" href="#">Z - A</a></li>
-  </ul>
-</div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">A - Z</a></li>
+                <li><a class="dropdown-item" href="#">Z - A</a></li>
+            </ul>
+        </div>
+
     </div>
 
 
@@ -114,151 +94,75 @@ session_start();
     <!-- Category-product -->
 
 
-
-    <div class="featured-product-container">
-        <div class="featured-products">
+    <?php
+    if (isset($_POST['search'])) {
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        if(isset($_POST['text'])){
+        $text = $_POST['text'];
+        $SQL11 = "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID WHERE PRODUCT_NAME LIKE '%$text%'";
+        $data= oci_parse($conn,$SQL11);
+        oci_execute($data);
+        if($data){
+            echo '<div class="featured-products">';
+        while($val= oci_fetch_array($data)){
+            $names= $val['PRODUCT_NAME'];
+            echo '
             <div class="card">
-                <img src="images/lettuce.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Healthy vegetable
-                            pvt.ltd</B> </h6>
-                    <p class="instock-text"> In Stock </p>
+            <a href = "product-display-page.php?id=' . $val['PRODUCT_ID'] . '">
+                         <img src=./Traders/pro-img/' . $val['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                        <div class="in-stock flex-verticle">
+                            <h6><B>' . $val['SHOP_NAME'] . '</B> </h6>
+                            <p class="instock-text"> In Stock </p>
+                        </div>
+                        <h6>' . $val['PRODUCT_NAME'] . '</h6>
+                        <p class="price">$Price : ' . $val['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                        <p>' . $val['PRODUCT_DESCRIPTION'] . '</p>
+                        <div class="flex-verticle">
+                           <a href = "cart.php?id=' . $val['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                            <p class="addtocart-icon">
+                            <a href= "wish.php?id=' . $val['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                        </div>
+                    </div>
+                
+                ';
+            }
+            echo '</div>';
+            
+        
+    }
+}
+        oci_close($conn);
+    }else{
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $SQL = "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID";
+        $queery = oci_parse($conn, $SQL);
+        oci_execute($queery);
+        echo '<div class="featured-products">';
+        while ($value = oci_fetch_array($queery)) {
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $value['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $value['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $value['SHOP_NAME'] . '</B> </h6>
+                        <p class="instock-text"> In Stock </p>
+                    </div>
+                    <h6>' . $value['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $value['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $value['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $value['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
                 </div>
-                <h6>Fresh Lettuce</h6>
-                <p class="price">$Price : $2 &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
-                <p>Fresh lettuce in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/c.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Bakery</B> </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Croissant</h6>
-                <p class="price">$Price : $4 &nbsp;&nbsp;&nbsp;<S>$5</S></p>
-                <p>Fresh and well made crossiant in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/fish.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Fish Monger</B>
-                    </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>1 kg Fresh Fish</h6>
-                <p class="price">$Price : $8 &nbsp;&nbsp;&nbsp;<S>$10</S></p>
-                <p>Fresh and best quality fish in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/chicken.png" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Butcher</B> </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Chicken</h6>
-                <p class="price">$Price : $7 &nbsp;&nbsp;&nbsp;<S>$9</S></p>
-                <p>Fresh and best quality chicken in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="featured-product-container">
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/ramen.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Delicatessen</B>
-                    </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Ramen</h6>
-                <p class="price">$Price : $4 &nbsp;&nbsp;&nbsp;<S>$5</S></p>
-                <p>Tasty and well cooked ramen.</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/c.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Bakery</B> </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Croissant</h6>
-                <p class="price">$Price : $4 &nbsp;&nbsp;&nbsp;<S>$5</S></p>
-                <p>Fresh and well made crossiant in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/chicken.png" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Butcher</B> </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Chicken</h6>
-                <p class="price">$Price : $7 &nbsp;&nbsp;&nbsp;<S>$9</S></p>
-                <p>Fresh and best quality chicken in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-        <div class="featured-products">
-
-            <div class="card">
-                <img src="images/lettuce.jpg" alt="crossiant-img" style="width:100%">
-                <div class="in-stock flex-verticle">
-                    <h6><B>Healthy vegetable
-                            pvt.ltd</B> </h6>
-                    <p class="instock-text"> In Stock </p>
-                </div>
-                <h6>Fresh Lettuce</h6>
-                <p class="price">$Price : $2 &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
-                <p>Fresh lettuce in the town</p>
-                <div class="flex-verticle">
-                    <button class="btn btn1">Add to cart</button>
-                    <p class="addtocart-icon"><a href="#"><i class="fa-regular fa-heart black"></i></a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+    }
+    ?>
 
 
 

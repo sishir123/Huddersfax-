@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(isset($_SESSION['id'])){
+    $userid = $_SESSION['id'];
+   
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,48 +60,9 @@ session_start();
 		/>
 	</head>
 	<body>
-		<input type="checkbox" id="check" />
-		<nav>
-			<a href="Homepage.php"
-				><img src="images/logo.png" alt="logo" class="logo"
-			/></a>
-
-			<div class="search_box">
-				<input type="search" placeholder="Search entire store here" />
-				<span class="fa fa-search"></span>
-			</div>
-			<ol>
-				<li>
-					<a href="Wishlistpage.php" class="Hover-btn"
-						><i class="fa-regular fa-heart"></i> Wishlist</a
-					>
-				</li>
-				<li>
-					<a href="Addtocart.php" class="Hover-btn"
-						><i class="fa-solid fa-cart-shopping"></i> Cart</a
-					>
-				</li>
-				<li>
-					<a href="Login/login.php" class="Hover-btn"
-						><i class="fa-solid fa-right-to-bracket"></i> Login</a
-					>
-				</li>
-				<li>
-					<select name="categories-dropdown" id="categories">
-						<option selected disabled value="">Categories</option>
-						<option value="">Bakery</option>
-						<option value="">Butcher</option>
-						<option value="">Green Grocer</option>
-						<option value="">Fish Monger</option>
-						<option value="">Delicatessen</option>
-					</select>
-				</li>
-			</ol>
-			<label for="check" class="bar">
-				<span class="fa fa-bars" id="bars"></span>
-				<span class="fa fa-times" id="times"></span>
-			</label>
-		</nav>
+	<?php
+    include('./header.php');
+?>
 
 		<!-- Contact us Header -->
 

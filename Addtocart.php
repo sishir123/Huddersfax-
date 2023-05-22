@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(isset($_SESSION['id'])){
+  $userid = $_SESSION['id'];
+ 
+}else{
+  $userid=0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +23,8 @@ session_start();
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="Css/cart.css" />
-    <link rel="stylesheet" href="Css/style.css" />
+    <link rel="stylesheet" href="Css/cart.css?v=<?php echo time(); ?>" />
+    <link href="Css/style.css?v=<?php echo time(); ?>" rel="stylesheet"/>
 
     <!-- Bootstrap scripts -->
     <script
@@ -53,44 +59,10 @@ session_start();
     <link rel="stylesheet" href="./Css/wishlist.css" />
   </head>
   <body>
-    <input type="checkbox" id="check" />
-    <nav>
-      <a href="Homepage.php"><img src="images/logo.png" alt="logo" class="logo"></a>
-      <div class="search_box">
-        <input type="search" placeholder="Search entire store here" />
-        <span class="fa fa-search"></span>
-      </div>
-      <ol>
-        <li>
-          <a href="Wishlistpage.php" class="Hover-btn"
-            ><i class="fa-regular fa-heart"></i> Wishlist</a
-          >
-        </li>
-        <li>
-          <a href="Addtocart.php" class="Hover-btn"
-            ><i class="fa-solid fa-cart-shopping"></i> Cart</a
-          >
-        </li>
-        <li>
-          <li><a href="Login/login.php" class ="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-
-        </li>
-        <li>
-          <select name="categories-dropdown" id="categories">
-            <option selected disabled value="">Categories</option>
-            <option value="">Bakery</option>
-            <option value="">Butcher</option>
-            <option value="">Green Grocer</option>
-            <option value="">Fish Monger</option>
-            <option value="">Delicatessen</option>
-          </select>
-        </li>
-      </ol>
-      <label for="check" class="bar">
-        <span class="fa fa-bars" id="bars"></span>
-        <span class="fa fa-times" id="times"></span>
-      </label>
-    </nav>
+    <!-- Include Header -->
+  <?php
+    include('./header.php');
+  ?>
 
     <div class="cart-page-container">
       <div class="header-text">
@@ -98,21 +70,41 @@ session_start();
         <p>Promo codes are confirmed at checkout.</p>
       </div>
       <div class="cart-checkout-container">
-        <div>
-          <div class="cart-items-container">
+      <div class="cart-items-container">
+
+      <?php
+   
+  
+    $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+    $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
+    $queery = oci_parse($conn, $SQL);
+    oci_execute($queery);
+         
+    echo ' ';
+    if($queery){
+    for ($i=0; $i<=20 && $value = oci_fetch_array($queery); $i++){
+      $cart= $value['FK2_CART_ID'];
+      $product= $value['FK1_PRODUCT_ID'];
+      $SQLII = "SELECT * FROM PRODUCT WHERE PRODUCT_ID='$product'";
+      $queerrrry = oci_parse($conn,$SQLII);
+      oci_execute($queerrrry);
+      if($queerrrry){
+      for ($j=0; $j<=20 && $values = oci_fetch_array($queerrrry); $j++){
+      echo '
+       
             <div class="cart-page-item">
               <div class="cart-page-desc-container">
                 <div class="cart-page-img">
-                  <img src="images/fish.jpg" alt="product-img" />
+                  <img src=./Traders/pro-img/'.$values['PRODUCT_IMAGE'].' alt="product-img" />
                 </div>
                 <div class="cart-page-desc">
                   <div class="cart-page-item-name">
-                    <h5 class="cart-page-item-text">1Kg Fresh Fish</h5>
+                    <h5 class="cart-page-item-text">'.$values['PRODUCT_NAME'].'</h5>
                   </div>
 
                   <div class="cart-page-description">
                     <p class="cart-page-desc-text">
-                      Fresh and best quality fish in the town
+                     '.$values['PRODUCT_DESCRIPTION'].'
                     </p>
                   </div>
                   <div class="cart-page-instock">
@@ -130,51 +122,42 @@ session_start();
                 </div>
               </div>
               <div class="cart-page-priceinfo">
-                <i class="fa-solid fa-trash"></i>
+                <a href = "delete-cart.php?id=' . $values['PRODUCT_ID'] .' "<i class="fa-solid fa-trash"></i></a>
                 <p class="price-info">
                   <s>$ 10</s>&nbsp;$5 <br />
                   Discount applied : $5
                 </p>
-              </div>
-            </div>
-            <div class="cart-page-item">
-              <div class="cart-page-desc-container">
-                <div class="cart-page-img">
-                  <img src="images/fish.jpg" alt="product-img" />
+              
                 </div>
-                <div class="cart-page-desc">
-                  <div class="cart-page-item-name">
-                    <h5 class="cart-page-item-text">1Kg Fresh Fish</h5>
-                  </div>
-
-                  <div class="cart-page-description">
-                    <p class="cart-page-desc-text">
-                      Fresh and best quality fish in the town
-                    </p>
-                  </div>
-                  <div class="cart-page-instock">
-                    <p class="cart-page-instock-text">In stock</p>
-                  </div>
-                  <div class="wrapper">
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      class="num"
-                      value="1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="cart-page-priceinfo">
-                <i class="fa-solid fa-trash"></i>
-                <p class="price-info">
-                  <s>$ 10</s>&nbsp;$5 <br />
-                  Discount applied : $5
-                </p>
-              </div>
+    
+           </div>';
+      }
+    }
+  }
+  }
+  ?>
+  <div class="checkout-container">
+          <h5>Summary</h5>
+          <div class="summary-info">
+            <div class="items-in-cart">
+              <p>Items in the cart</p>
+              <p>$ 20</p>
             </div>
+            <div class="discount-in-cart">
+              <p>Discount Applied</p>
+              <p>$ -10</p>
+            </div>
+            <div class="price-info">
+              <p>Total</p>
+              <p>$ 10</p>
+            </div>
+            <a href="./checkout-page.php">
+            <button class="btn btn1">Checkout</button></a>
           </div>
+      
+          </div>
+
+
           <div class="cart-bottom-container">
             <div class="flex">
               <h3>Safe & easy shopping</h3>
@@ -199,26 +182,14 @@ session_start();
             </div>
           </div>
         </div>
-        <div class="checkout-container">
-          <h5>Summary</h5>
-          <div class="summary-info">
-            <div class="items-in-cart">
-              <p>Items in the cart</p>
-              <p>$ 20</p>
-            </div>
-            <div class="discount-in-cart">
-              <p>Discount Applied</p>
-              <p>$ -10</p>
-            </div>
-            <div class="price-info">
-              <p>Total</p>
-              <p>$ 10</p>
-            </div>
-            <button class="btn btn1">Checkout</button>
-          </div>
-        </div>
+        
+       
       </div>
-    </div>
+    
+  
+  
+     </div>
+    
 
     <!-- Subscribe Handlebar -->
 

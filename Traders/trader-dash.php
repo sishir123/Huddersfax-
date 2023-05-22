@@ -53,7 +53,7 @@ if($query){
         <a href="Homepage.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
             <li>
-                <a href="" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
+                <a href="./Edit profile/trader-edit-profile.php" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
             </li>
             <li>
             <a href="" class="Hover-btn"><i class="fa-solid fa-user"></i> View Profile</a>

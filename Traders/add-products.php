@@ -9,10 +9,7 @@ $SQLI = "SELECT * FROM SHOP WHERE FK1_USER_ID = '$session_var'";
 $query = oci_parse($conn, $SQLI);
 oci_execute($query);
 
-if($query){
-  $store_var =  oci_fetch_array($query);
-  $filler = $store_var['SHOP_ID'];
-}
+
 
 
 ?>
@@ -26,6 +23,7 @@ if($query){
     <title>Document</title>
 </head>
 <body>
+  
     <?php
     if(isset($_POST['submit'])){
 
@@ -40,8 +38,9 @@ if($query){
         $tempname = $_FILES["Productimg"]["tmp_name"];
         $folder = './pro-img/' . $Productimg;
         move_uploaded_file($tempname, $folder);
+        $selectshop = $_POST['SHOP'];
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$filler','$Category', 'allergy-info')";
+     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$selectshop','$Category', 'allergy-info')";
      $queeryok = oci_parse($conn, $SQLI);
      oci_execute($queeryok);
     }
@@ -81,6 +80,26 @@ if($query){
   <label for="exampleInputPassword1" class="form-label">Product Image</label>
   <input type="file" class="form-control" id="inputGroupFile02" name="Productimg">
 </div>
+
+<label for="">Choose Shop:</label>
+<select name="SHOP">
+  
+<?php
+ $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+ $SQLI = "SELECT * FROM SHOP  WHERE FK1_USER_ID =  '$session_var'";
+ $queeryok = oci_parse($conn, $SQLI);
+ oci_execute($queeryok); 
+ echo $session_var;
+
+ while ($values = oci_fetch_array($queeryok)) {
+ 
+  echo '
+<option value="'.$values['SHOP_ID'].'">'.$values['SHOP_NAME'].'</option>';
+}
+  ?>
+
+
+</select>
   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
 </body>

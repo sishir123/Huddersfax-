@@ -23,26 +23,33 @@
 
 .image{
 	border-radius: 40px;
-	height: 450px;
-	width: 1300px;
+	height: 350px;
+	width: 700px;
 	border: 2px solid #8F4747;
     margin-bottom: 50px;
     margin-top: 50px;
+	margin-left: 300px;
 }
 
 .firstP{
-	margin-right: 500px;
+	margin-right: 200px;
     margin-bottom: 50px;
     font-weight: bold;
+	margin-left: 100px;
+
 }
 
 .secondP{
-	margin-right: 500px;
+	margin-right: 200px;
 	font-weight: bold;
 	text-align: justify;
+	margin-left: 100px;
+
 }
 
 h2{
 	line-height: 0.5;
     padding-bottom: 40px;
+	margin-left: 100px;
+
 }

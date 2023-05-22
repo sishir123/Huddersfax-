@@ -19,6 +19,10 @@
     <?php
     
     $username_error = " ";
+    $password_error = " ";
+    $email_error = " ";
+    $address_error = " ";
+    $phonenumber_error = " ";
 
     ?>
     <div id="container">
@@ -57,16 +61,16 @@
                         if (preg_match('/[0-9]/', $password)) {
                             $validpassword = $password;
                         } else {
-                            echo "<b>Insert numeric value in password</b> </br>";
+                             $password_error = "<b>Insert numeric value in password</b> </br>";
                         }
                     } else {
-                        echo "<b>Insert any uppercase value in password</b> </br>";
+                         $password_error = "<b>Insert any uppercase value in password</b> </br>";
                     }
                 } else {
-                    echo "<b>Insert any lowercase value in password</b> </br>";
+                     $password_error = "<b>Insert any lowercase value in password</b> </br>";
                 }
             } else {
-                echo "<b>Your Password is empty</b> </br>";
+                 $password_error = "<b>Your Password is empty</b> </br>";
             }
 
             ?>
@@ -76,10 +80,10 @@
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $validemail = $email;
                 } else {
-                    echo "<b>Invalid Email</b> </br>";
+                    $validemail = "<b>Invalid Email</b> </br>";
                 }
             } else {
-                echo "<b>Your Email is empty</b> </br>";
+                $validemail = "<b>Your Email is empty</b> </br>";
             }
             ?>
 
@@ -88,7 +92,7 @@
             if(!empty($address)){
 
             }else{
-                echo "<b>Your Address is empty</b><br>";
+                $address_error = "<b>Your Address is empty</b><br>";
             }
             ?>
 
@@ -97,13 +101,13 @@
             if(!empty($PhoneNumber)){
 
             }else{
-                echo "<b>Your Contact Number is empty</b>";
+                $phonenumber_error = "<b>Your Contact Number is empty</b>";
             }
             ?>
 
             <!-- Inserting the data to db form registration form -->
         <?php
-        if ($username_error == " "){
+        if ($username_error == " " && $password_error == " " && $email_error == " " && $address_error == " " && $phonenumber_error == " "){
 
             // Verification code generator
             $v_code = bin2hex(random_bytes(3));
@@ -114,16 +118,16 @@
 
             if ($queeryok) {
                 
-                echo "Registration Successfull";
+                echo "";
                 $to = $email;
                 $subject = 'Huddersfax Verification';
-                $message = 'Hello Sir/Mam !\n\nThank you for choosing us.<br>Use this code for registration : '.$v_code;
+                $message = 'Hello Sir/Mam Thank you for choosing us.Use this code for registration : '.$v_code;
                 $headers = "From: huddersfaxmart@gmail.com";
                 $mail_sent = mail($to, $subject, $message, $headers);
                 if ($mail_sent == true) {
-                    echo "Mail Sent";
+                    echo "<script>alert('Request is under admin surveilliance');</script>";;
                 } else {
-                    echo "Mail failed";
+                    echo "Failed";
                 }
             } else {
                 echo " failed ";
@@ -155,12 +159,15 @@
                         <!-- <label for="password">Password</label> -->
                         <input type="password" placeholder="Password" name="password" id="password" value="<?php if (isset($_POST['password']))
                                                                                                                 echo $_POST['password']; ?>">
+                                                                                                                <?php echo $password_error; ?>
                     </div>
 
                     <div class="form-group">
                         <!-- <label for="email">Email</label> -->
                         <input type="email" placeholder="Email" name="email" id="email" value="<?php if (isset($_POST['email']))
                                                                                                     echo $_POST['email']; ?>">
+                                                                                                     <?php echo $email_error ; ?>
+
                     </div>
 
                     <!-- Address -->
@@ -168,12 +175,16 @@
                         <!-- <label for="Address">Address</label> -->
                         <input type="text" placeholder="Address" name="address" id="address" value="<?php if (isset($_POST['address']))
                                                                                                         echo $_POST['address']; ?>">
+                                                                                                         <?php echo $address_error ; ?>
+
                     </div>
 
                     <!-- Phone number -->
                     <div class="form-group">
                         <!-- <label for="PhoneNumber">Phone Number</label> -->
                         <input type="text" placeholder="PhoneNumber" name="PhoneNumber" id="PhoneNumber" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>">
+                        <?php echo $phonenumber_error ; ?>
+
                     </div>
 
                     <!-- Checkbox -->
