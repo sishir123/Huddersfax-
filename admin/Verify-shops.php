@@ -19,10 +19,10 @@ include('./session-admin.php');
 
 <table class="table table-hover">
   <tr>
-    <th>SHOP_NAME</th>
-    <th>SHOP_ADDRESS</th>
-    <th>SHOP_PHONE_NUMBER</th>
-    <th>SHOP_EMAIL</th>
+    <th>SHOP NAME</th>
+    <th>SHOP ADDRESS</th>
+    <th>SHOP PHONE_NUMBER</th>
+    <th>SHOP EMAIL</th>
     <th>Approval</th>
     <th>Declined</th>
 </tr>

@@ -14,21 +14,20 @@ include('./session-admin.php');
     <title>Document</title>
 </head>
 <body>
-<button><a href="./admin-dash.php">Dashboard</a></button>
-<button><a href="./Verify-products.php">Verify</a></button>
 
+<button><a href="./admin-dash.php"> Dashboard</a></button>
 
 <table class="table table-hover">
   <tr>
-    <th>Product Name</th>
-    <th>Product Description</th>
-    <th>Price</th>
-    <th>Product Quantity</th>
-    <th>Product Stock</th>
-    <th>Min Order</th>
-    <th>Max Order</th>
-    <th>Product Image</th>
-    <th>Status</th>
+    <th>PRODUCT NAME</th>
+    <th>PRODUCT DESCRIPTION</th>
+    <th>PRICE</th>
+    <th>PRODUCT QUANTITY</th>
+    <th>PRODUCT STOCK</th>
+    <th>MIN ORDER</th>
+    <th>MAX ORDER</th>
+    <th>Approval</th>
+    <th>Declined</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
@@ -36,8 +35,9 @@ include('./session-admin.php');
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
+
  while ($value = oci_fetch_array($queeryok)) {
-    if($value['PRODUCT_STATUS'] == 1){
+    if($value['PRODUCT_STATUS'] == 0){
     echo '
     <tr>
     <td>'.$value['PRODUCT_NAME'].'</td>
@@ -47,28 +47,18 @@ include('./session-admin.php');
     <td>'.$value['PRODUCT_STOCK'].'</td>
     <td>'.$value['MIN_ORDER'].'</td>
     <td>'.$value['MAX_ORDER'].'</td>
-    <td> <img src = "./pro-img/'.$value['PRODUCT_IMAGE'].'" width="100px" height="100px"></td>
-    <td><a href = "Deactivate-products.php?id='.$value['PRODUCT_ID'].' ">Activate</a></td></tr>';
-
-    }
-    if($value['PRODUCT_STATUS'] == 2){
-        echo '
-        <tr>
-        <td>'.$value['PRODUCT_NAME'].'</td>
-        <td>'.$value['PRODUCT_DESCRIPTION'].'</td>
-        <td>'.$value['PRICE'].'</td>
-        <td>'.$value['PRODUCT_QUANTITY'].'</td>
-        <td>'.$value['PRODUCT_STOCK'].'</td>
-        <td>'.$value['MIN_ORDER'].'</td>
-        <td>'.$value['MAX_ORDER'].'</td>
-        <td> <img src = "./pro-img/'.$value['PRODUCT_IMAGE'].'" width="100px" height="100px"></td>
-        <td><a href = "Activate-products.php?id='.$value['PRODUCT_ID'].' ">Deactivate</a></td></tr>';
-    }
+    <td> <a href = "./Approve-products.php.?id='.$value['PRODUCT_ID'].' ">Approve</a></td>
+    <td> <a href = "./Decline-products.php?id='.$value['PRODUCT_ID'].' ">Decline</a></td></tr>';
     
  }
 
+
+ 
+}
+
 ?>
    
+
 </table>
 </body>
 </html>

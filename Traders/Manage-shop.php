@@ -16,7 +16,7 @@ $userid =  $_SESSION['id'];
     <title>Document</title>
 </head>
 <body>
-
+<button><a href="./trader-dash.php"> Dashboard</a></button>
 <button><a href="add-shop.php"> Add Shop</a></button>
 <table class="table table-hover">
   <tr>

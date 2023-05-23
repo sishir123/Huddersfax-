@@ -14,6 +14,7 @@ include('./session-admin.php');
     <title>Document</title>
 </head>
 <body>
+    <button><a href="./admin-dash.php">Dashboard</a></button>
 
 
 <table class="table table-hover">

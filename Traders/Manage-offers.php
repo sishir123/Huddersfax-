@@ -1,6 +1,7 @@
 <?php
 include('../session.php');
 include('./session-trader.php');
+
 ?>
 
 <!DOCTYPE html>

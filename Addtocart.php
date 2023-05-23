@@ -79,6 +79,8 @@ if(isset($_SESSION['id'])){
     $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
     $queery = oci_parse($conn, $SQL);
     oci_execute($queery);
+
+    
          
     echo ' ';
     if($queery){
@@ -95,8 +97,9 @@ if(isset($_SESSION['id'])){
             <div class="cart-page-item">
               <div class="cart-page-desc-container">
                 <div class="cart-page-img">
+                <a href = "product-display-page.php?id=' . $values['PRODUCT_ID'] . '">
                   <img src=./Traders/pro-img/'.$values['PRODUCT_IMAGE'].' alt="product-img" />
-                </div>
+                </div></a>
                 <div class="cart-page-desc">
                   <div class="cart-page-item-name">
                     <h5 class="cart-page-item-text">'.$values['PRODUCT_NAME'].'</h5>
@@ -140,7 +143,16 @@ if(isset($_SESSION['id'])){
           <h5>Summary</h5>
           <div class="summary-info">
             <div class="items-in-cart">
-              <p>Items in the cart</p>
+              <p>Price </p>
+
+      <?php      
+    $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+    $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
+    $queery = oci_parse($conn, $SQL);
+    oci_execute($queery);
+    ?>
+
+          
               <p>$ 20</p>
             </div>
             <div class="discount-in-cart">

@@ -29,19 +29,40 @@ if ($queery2) {
         $value3 = oci_fetch_array($queery3);
         $wishid = $value3['WISHLIST_ID'];
         $fkuserid = $value3['FK1_USER_ID'];
-        echo $fkuserid;
-        
-        echo $wishid;
-       
+
         if($value3['FK1_USER_ID'] == $userid){
-        
         $_SESSION['wishid'] = $wishid;
+        $SQLI2 = "SELECT * FROM WISHLIST_PRODUCT WHERE PRODUCT_ID = '$product'";
+        $QUERRY = oci_parse($conn, $SQLI2);
+        oci_execute($QUERRY);
+
+        if($QUERRY){
+        $value4 = oci_fetch_array($QUERRY);
+        if($value4['FK1_PRODUCT_ID'] == $product){
+            echo '
+            <script>
+            alert("Aleardy existed");
+            </script>
+            ';
+
+        }else{
         $SQLI = "INSERT INTO WISHLIST_PRODUCT(WISHLIST_ITEM,WISHLIST_ID,PRODUCT_ID) VALUES ('$wishListItem','$wishid','$product')";
         $queery4 = oci_parse($conn, $SQLI);
         oci_execute($queery4);
         if($queery4){
             header('Location:'. $_SERVER["HTTP_REFERER"]);
         }
+    }
+}
+
+
+
+
+
+
+
+
+    
     }else{
         $SQL = "INSERT INTO WISHLIST(FK1_USER_ID) VALUES ('$userid')";
         $queery = oci_parse($conn, $SQL);
@@ -54,13 +75,18 @@ if ($queery2) {
                 $value2 = oci_fetch_array($queery3);
                 $wishid = $value2['WISHLIST_ID'];
                 $_SESSION['wishid'] = $wishid;
+
+               
+
                 $SQLI = "INSERT INTO WISHLIST_PRODUCT(WISHLIST_ITEM,WISHLIST_ID,PRODUCT_ID) VALUES ('$wishListItem','$wishid','$product')";
                 $queery4 = oci_parse($conn, $SQLI);
                 oci_execute($queery4);
                 if($queery4){
                     header('Location:'. $_SERVER["HTTP_REFERER"]);
                 }
-            }
+            
+        
+    }
         }
         
     }

@@ -18,6 +18,8 @@ $userid = $_SESSION['id'];
 <body>
 
 <button><a href="./add-cat.php">Add Categories</a></button>
+<button><a href="../trader-dash.php"> Dashboard</a></button>
+
 <table class="table table-hover">
   <tr>
     <th>Categories Type</th>

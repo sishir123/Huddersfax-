@@ -20,6 +20,7 @@ $category = $_SESSION['Category'];
 
 <body>
 
+    <button><a href="./trader-dash.php"> Dashboard</a></button>
     <button><a href="add-products.php"> Add Products</a></button>
     <table class="table table-hover">
         <tr>

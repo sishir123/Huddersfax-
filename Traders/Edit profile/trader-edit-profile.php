@@ -25,6 +25,7 @@ session_start();
     <div class="edit-profile-text">
         <h3>Edit your Profile</h3>
     </div>
+    <button><a href="../trader-dash.php"> Dashboard</a></button>
     <?php
     $profile = $_SESSION['id'];
     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');

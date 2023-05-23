@@ -9,9 +9,6 @@ $SQLI = "SELECT * FROM SHOP WHERE FK1_USER_ID = '$session_var'";
 $query = oci_parse($conn, $SQLI);
 oci_execute($query);
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +36,21 @@ oci_execute($query);
         $folder = './pro-img/' . $Productimg;
         move_uploaded_file($tempname, $folder);
         $selectshop = $_POST['SHOP'];
+    $offerid = $_POST['Offer'];
+       
+
+
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$selectshop','$Category', 'allergy-info')";
+     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$selectshop','$Category', 'allergy-info')RETURNING PRODUCT_ID INTO :productid";
      $queeryok = oci_parse($conn, $SQLI);
+     oci_bind_by_name($queeryok, ":productid", $productid1);
      oci_execute($queeryok);
+
+      $SQL2 = "INSERT INTO PRODUCT_OFFER(OFFER_ID,DISCOUNT_AMT) VALUES('$offerid', $productid1)";
+      $quri = oci_parse($conn, $SQL2);
+      oci_execute($quri);
     }
+
     
     ?>
 
@@ -81,6 +88,8 @@ oci_execute($query);
   <input type="file" class="form-control" id="inputGroupFile02" name="Productimg">
 </div>
 
+<!-- For shop -->
+
 <label for="">Choose Shop:</label>
 <select name="SHOP">
   
@@ -97,9 +106,27 @@ oci_execute($query);
 <option value="'.$values['SHOP_ID'].'">'.$values['SHOP_NAME'].'</option>';
 }
   ?>
-
-
 </select>
+
+<!-- For Offer -->
+
+<!-- <label for="">Choose Offer:</label>
+<select name="Offer">
+  
+<!-- <?php
+//  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+//  $SQLI = "SELECT * FROM OFFER";
+//  $queerryok = oci_parse($conn, $SQLI);
+//  oci_execute($queerryok); 
+//  while ($values = oci_fetch_array($queerryok)) {
+ 
+//   echo '
+// <option value="'.$values['OFFER_ID'].'">'.$values['OFFER_PERCENTAGE'].'</option>';
+// }
+  ?> -->
+</select> -->
+
+
   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
 </body>

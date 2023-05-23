@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
     <title>Huddersfax Mart</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="Css/style.css"> -->
@@ -61,37 +61,38 @@ if (isset($_SESSION['id'])) {
 
 
 
-
-    <!-- Category Highlight -->
+<!-- Sorting and Searchng -->
     <div class="sort">
         <p class="featured-text ls-1">Category Highlight</p>
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Price
-            </a>
+        <!-- Default dropright button -->
+<div class="btn-group dropright">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Alfabetically
+  </button>
+  <div class="dropdown-menu">
+    
+  <p>A-Z</p>
+  <p>Z-A</p>
+  </div>
+</div>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Low to High</a></li>
-                <li><a class="dropdown-item" href="#">High to Low</a></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Alfabetically
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">A - Z</a></li>
-                <li><a class="dropdown-item" href="#">Z - A</a></li>
-            </ul>
-        </div>
-
+<div class="btn-group dropright">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+   Price
+  </button>
+  <div class="dropdown-menu">
+    
+  <p>High to Low</p>
+  <p>Low to High</p>
+  </div>
+</div>
     </div>
 
 
 
 
-    <!-- Category-product -->
+
+    <!-- For Searching-->
 
 
     <?php

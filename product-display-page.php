@@ -81,9 +81,8 @@ if (isset($_SESSION['id'])) {
           </div>
           <div class="product-stock-checker">Stock available : 10</div>
           <div class="product-add-to-cart">
-            <a href = "./cart.php?id=' . $value['PRODUCT_ID'] . '"><i class="fa-solid fa-cart-shopping">Add to cart</i></a>
-            
-          </div>
+          
+            <a href = "./cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
           <div class="flex-horizontal">
             <p>Available</p>
             <p>Within 3-4 days</p>
@@ -113,10 +112,10 @@ if (isset($_SESSION['id'])) {
     <?php
     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
     $SQLI = "SELECT * FROM REVIEW JOIN S_USER ON REVIEW.FK2_USER_ID = S_USER.USER_ID WHERE REVIEW.FK1_PRODUCT_ID = '$product'";
-    $SQL = oci_parse($conn, $SQLI);
-    echo oci_execute($SQL);
+    $SQLIIII = oci_parse($conn, $SQLI);
+    echo oci_execute($SQLIIII);
 
-    while ($value = oci_fetch_array($SQL)) {
+    while ($value = oci_fetch_array($SQLIIII)) {
 
 
     ?>

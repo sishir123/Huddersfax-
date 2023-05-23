@@ -2,7 +2,6 @@
 session_start();
 if(isset($_SESSION['id'])){
   $userid = $_SESSION['id'];
-
 }
 ?>
 
@@ -72,6 +71,8 @@ if(isset($_SESSION['id'])){
     $SQL = "SELECT * FROM WISHLIST_PRODUCT WHERE WISHLIST_ID =(SELECT WISHLIST_ID FROM WISHLIST WHERE FK1_USER_ID = '$userid') ";
     $queery = oci_parse($conn, $SQL);
     oci_execute($queery);
+
+    
          
     echo ' ';
     if($queery){
@@ -91,8 +92,9 @@ if(isset($_SESSION['id'])){
       <div class="wishlist-item">
         <div class="wishlist-desc-container">
           <div class="wishlist-img">
+          <a href = "product-display-page.php?id=' . $value['PRODUCT_ID'] . '">
            <img src=./Traders/pro-img/'.$values['PRODUCT_IMAGE'].' alt="product-img" height="100px" width="100px"/>
-          </div>
+          </div></a>
           <div class="wishlist-desc">
             <div class="wishlist-item-name">
               <h5 class="wishlist-item-text">'.$values['PRODUCT_NAME'].'</h5>

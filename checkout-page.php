@@ -167,15 +167,15 @@ if(isset($_SESSION['id'])){
               <h5><i class="fa-solid fa-truck"></i> Pick-up Date And Time</h5>
               <i class="fa-solid fa-chevron-down"></i></p><br>
             </div>
+
+            <!-- Collection slot -->
+
             <form action="/action_page.php">
               <p> Day</p>
-              <input type="button" id="Sun" name="Day" value="Sun">
-              <input type="button" id="Mon" name="Day" value="Mon">
-              <input type="button" id="Tue" name="Day" value="Tue">
               <input type="button" id="Wed" name="Day" value="Wed">
               <input type="button" id="Thu" name="Day" value="Thu">
               <input type="button" id="Fri" name="Day" value="Fri">
-              <input type="button" id="Sat" name="Day" value="Sat"><br>
+            <br>
             <form action="/action_page.php"><br>
               <p> Time Slot</p>
               <input type="radio" id="10am - 1pm" name="Time slot" value="10am - 1pm">
@@ -191,7 +191,7 @@ if(isset($_SESSION['id'])){
               <p><br><i class="fa-solid fa-chevron-down"></i></p><br>
             </div>
             <p>Suburb Cleckhddersfax,65,Ilamo,Uk</p>
-            <li><a href="#" class=" ">Change</a></li><br>
+            
             <div class="flex">
               <h5>
                 <i class="fa-regular fa-credit-card"></i> Convenient payment
@@ -199,9 +199,7 @@ if(isset($_SESSION['id'])){
               </h5>
               <p><i class="fa-solid fa-chevron-down"></i></p><br>
             </div>
-            <input type="radio" id="Paypal" name="Paypal" value="Paypal">
-            <i class="fa-brands fa-paypal fa-beat-fade"></i>
-              <label for="Paypal">Paypal</label><br>
+           
           </div>
           
           <button class="btn btn1 ok">Continue</button> 
