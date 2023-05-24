@@ -36,19 +36,14 @@ oci_execute($query);
         $folder = './pro-img/' . $Productimg;
         move_uploaded_file($tempname, $folder);
         $selectshop = $_POST['SHOP'];
-    $offerid = $_POST['Offer'];
+   
        
 
 
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$selectshop','$Category', 'allergy-info')RETURNING PRODUCT_ID INTO :productid";
+     $SQLI = "INSERT INTO PRODUCT(PRODUCT_NAME, PRODUCT_DESCRIPTION, PRICE, PRODUCT_QUANTITY, PRODUCT_STOCK, MIN_ORDER, MAX_ORDER, PRODUCT_IMAGE ,FK1_SHOP_ID, FK2_PRODUCT_CATEGORY_ID, ALLERGY_INFO) VALUES('$Productname', '$Productdes','$Productprice','$Productquantity','$Productstock','$Minorder','$Maxorder','$Productimg','$selectshop','$Category', 'allergy-info')";
      $queeryok = oci_parse($conn, $SQLI);
-     oci_bind_by_name($queeryok, ":productid", $productid1);
      oci_execute($queeryok);
-
-      $SQL2 = "INSERT INTO PRODUCT_OFFER(OFFER_ID,DISCOUNT_AMT) VALUES('$offerid', $productid1)";
-      $quri = oci_parse($conn, $SQL2);
-      oci_execute($quri);
     }
 
     
@@ -124,7 +119,7 @@ oci_execute($query);
 // <option value="'.$values['OFFER_ID'].'">'.$values['OFFER_PERCENTAGE'].'</option>';
 // }
   ?> -->
-</select> -->
+<!-- </select> -->
 
 
   <button type="submit" class="btn btn-primary" name="submit">Submit</button>

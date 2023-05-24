@@ -76,13 +76,10 @@ if(isset($_SESSION['id'])){
    
   
     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-    $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
+    $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='0') ";
     $queery = oci_parse($conn, $SQL);
     oci_execute($queery);
-
-    
-         
-    echo ' ';
+    $totalprice= array();
     if($queery){
     for ($i=0; $i<=20 && $value = oci_fetch_array($queery); $i++){
       $cart= $value['FK2_CART_ID'];
@@ -92,6 +89,8 @@ if(isset($_SESSION['id'])){
       oci_execute($queerrrry);
       if($queerrrry){
       for ($j=0; $j<=20 && $values = oci_fetch_array($queerrrry); $j++){
+        $pricetotalquantity= $values['PRICE']*$value['CART_QUANTITY'];
+        array_push($totalprice,$pricetotalquantity);
       echo '
        
             <div class="cart-page-item">
@@ -114,20 +113,20 @@ if(isset($_SESSION['id'])){
                     <p class="cart-page-instock-text">In stock</p>
                   </div>
                   <div class="wrapper">
-                    <input
+                    <a href="./decrement.php?id='.$values['PRODUCT_ID'].'">-</a> <input
                       type="number"
                       min="0"
                       max="100"
                       class="num"
-                      value="1"
-                    />
+                      value="'.$value['CART_QUANTITY'].'"
+                    /><a href="./increment.php?id='.$values['PRODUCT_ID'].'">+</a>
                   </div>
                 </div>
               </div>
               <div class="cart-page-priceinfo">
                 <a href = "delete-cart.php?id=' . $values['PRODUCT_ID'] .' "<i class="fa-solid fa-trash"></i></a>
                 <p class="price-info">
-                  <s>$ 10</s>&nbsp;$5 <br />
+                  <s>$ 10</s>&nbsp;'.$pricetotalquantity.' <br />
                   Discount applied : $5
                 </p>
               
@@ -138,6 +137,7 @@ if(isset($_SESSION['id'])){
     }
   }
   }
+  $price= array_sum($totalprice);
   ?>
   <div class="checkout-container">
           <h5>Summary</h5>
@@ -153,18 +153,28 @@ if(isset($_SESSION['id'])){
     ?>
 
           
-              <p>$ 20</p>
+              <p><?php echo'$ '.$price; ?></p>
             </div>
             <div class="discount-in-cart">
               <p>Discount Applied</p>
-              <p>$ -10</p>
+              <?php
+              $offersdisocunt= 0;
+              echo '<p> $ '.$offersdisocunt.' </p>'
+              ?>
             </div>
             <div class="price-info">
               <p>Total</p>
-              <p>$ 10</p>
+              <p><?php 
+              $Total= $price-$offersdisocunt;
+              echo'$ '.$Total; 
+              ?></p>
             </div>
+            <?php
+            echo '
             <a href="./checkout-page.php">
             <button class="btn btn1">Checkout</button></a>
+            ';
+            ?>
           </div>
       
           </div>

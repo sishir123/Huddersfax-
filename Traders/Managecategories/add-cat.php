@@ -21,10 +21,11 @@ $userid = $_SESSION['id'];
 
     $Category_type = $_POST['Category_type'];
      $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-     $SQLI = "INSERT INTO PRODUCT_CATEGORY(CATEGORY_TYPE, STATUS, FK1_USER_ID) VALUES('$Category_type', 0 ,'$userid')";
+     $SQLI = "INSERT INTO PRODUCT_CATEGORY(CATEGORY_TYPE, STATUS, FK1_USER_ID) VALUES('$Category_type', 1 ,'$userid')";
      $queeryok = oci_parse($conn, $SQLI);
      oci_execute($queeryok);
     }
+
     ?>
 
 <form method="post">

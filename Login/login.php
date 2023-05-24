@@ -59,7 +59,7 @@ session_start();
                     echo "<script>window.location.href = '../Homepage.php';</script>";
          
                 }elseif($value['USER_ROLE'] == 'TRADER' && $value['IS_VERIFIED'] == 1){
-                    echo "<script>window.location.href = '../Traders/trader-dash.php';</script>";
+                    echo "<script>window.location.href = '../Traders/Dashboard.php';</script>";
                 
                 }elseif($value['USER_ROLE'] == 'ADMIN' && $value['IS_VERIFIED'] == 1){
                     echo "<script>window.location.href = '../admin/admin-dash.php';</script>";

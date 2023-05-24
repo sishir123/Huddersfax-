@@ -15,7 +15,7 @@ if ($queery2) {
     $value =  oci_fetch_array($queery2);
     $cartitem = $value['PRODUCT_NAME'];
     oci_free_statement($queery2);
-    $cartID = "SELECT * FROM CART WHERE FK1_USER_ID = '$userid'";
+    $cartID = "SELECT * FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='0'";
     $queery3 = oci_parse($conn, $cartID);
     oci_execute($queery3);
 
@@ -24,7 +24,7 @@ if ($queery2) {
         $value3 = oci_fetch_array($queery3);
         $cartid = $value3['CART_ID'];
        
-        if($value3['FK1_USER_ID'] == $userid){
+        if($value3['FK1_USER_ID'] == $userid AND $value3['STATUS']=='0'){
         $SQLI2 = "SELECT * FROM CART_PRODUCT WHERE FK1_PRODUCT_ID = '$product'";
         $queery2 = oci_parse($conn, $SQLI2);
         oci_execute($queery2);

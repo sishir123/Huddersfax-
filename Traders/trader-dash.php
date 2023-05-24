@@ -50,7 +50,7 @@ if($query){
 <!-- Navbar -->
     <input type="checkbox" id="check" />
     <nav>
-        <a href="Homepage.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
+        <a href="./trader-dash.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
             <li>
                 <a href="./Edit profile/trader-edit-profile.php" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>

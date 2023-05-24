@@ -10,6 +10,7 @@
 
     <form class="paypal" action="payment.php" method="post" id="paypal_form">
         <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="amount" value="_xclick" />
         <input type="hidden" name="no_note" value="1" />
         <input type="hidden" name="lc" value="UK" />
         <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />

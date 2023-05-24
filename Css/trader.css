@@ -1,5 +1,4 @@
 /* Container */
-
 .title{
     text-align: center;
 }
@@ -18,3 +17,18 @@
     margin-inline-end: 1000px;
     padding-inline-start: 40px;
 }
+
+/* Analytics */
+
+.ana-container{
+    display: flex;
+    padding: 50px;
+}
+
+
+  
+
+
+
+
+
