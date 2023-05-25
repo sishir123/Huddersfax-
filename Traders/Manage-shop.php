@@ -28,7 +28,8 @@ $userid =  $_SESSION['id'];
         body {
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
-            background: rgba(71, 147, 227, 1);
+            background: #FFE799;
+
         }
 
         a {
@@ -215,15 +216,13 @@ $userid =  $_SESSION['id'];
     <td> <a href = "delete-shop.php?id='.$values['SHOP_ID'].' ">Delete</a></td>
 
 </tr>
-<tbody>
-</table>
-</div>';
+
+';
 }
     
  }
-
 ?>
-   
 </table>
+</div>
 </body>
 </html>

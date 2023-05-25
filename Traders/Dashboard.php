@@ -47,8 +47,23 @@
         body {
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
-            background: rgba(71, 147, 227, 1);
+            /* background: rgba(71, 147, 227, 1);
+             */
+            background: #FFE799;
         }
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 22px;
+        }
+        a:hover {
+  color: #013220;
+  text-decoration: none;
+}
+
+  i{
+    color: #013220;
+  }
 
     .container.dashboard {
       display: flex;
@@ -57,7 +72,9 @@
     }
 
     .list-group {
-      background: rgba(71, 147, 227, 1);
+      /* background: rgba(71, 147, 227, 1);
+       */
+      background: #FFE799;
       height: 100vh;
       margin-top: 5%;
 
@@ -99,7 +116,6 @@
 <body>
 
   <!-- Navbar -->
-  <input type="checkbox" id="check" />
     <nav>
         <a href="./Dashboard.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
@@ -118,48 +134,24 @@
     </nav>
 
   <!-- Dashboard -->
-
-  <div class="container dashboard">
-    <div class="list-group">
-      <button class="btn btn1"><i class="fa-solid fa-house"></i><a href="./Dashboard.php"> Dashboard</a></button>
-      <button class="btn btn1"><i class="fa-solid fa-list"></i><a href="./Managecategories/manage-cat.php">Manage Categories</a></button>
-      <button class="btn btn1"><i class="fa-solid fa-cube"></i><a href="./Manage-products.php">Manage Products</a> </button>
-      <button class="btn btn1"><i class="fa-solid fa-tag"></i><a href="./Manage-offers.php">Manage Offers </a></button>
-      <button class="btn btn1"><i class="fa-solid fa-shop"></i><a href="Manage-shop.php">Manage Shops</a></button>
-      <button class="btn btn1"><i class="fa-solid fa-chart-simple"></i><a href="">View Report</a></button>
+  <div class="container">
+        <div class="title">
+            <h2>Huddersfax Mart Trader Dashboard</h2>
+        </div>
+  
+    <ul class="list-group">
+      <li class="btn btn1"><i class="fa-solid fa-house"></i><a href="./Dashboard.php"> Dashboard</a></li>
+      <li class="btn btn1"><i class="fa-solid fa-list"></i><a href="./Managecategories/manage-cat.php">Manage Categories</a></li>
+      <li class="btn btn1"><i class="fa-solid fa-cube"></i><a href="./Manage-products.php">Manage Products</a> </li>
+      <li class="btn btn1"><i class="fa-solid fa-tag"></i><a href="./Manage-offers.php">Manage Offers </a></li>
+      <li class="btn btn1"><i class="fa-solid fa-shop"></i><a href="Manage-shop.php">Manage Shops</a></li>
+      <li class="btn btn1"><i class="fa-solid fa-shop"></i><a href="Manage-reviews.php">Manage Reviews</a></li>
+      <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i><a href="">View Report</a></li>
     </div>
-    <div class="content">
-      <div class="title">
-        <h2>Huddersfax Mart Trader Dashboard</h2>
-      </div>
-      <div class="ana-container">
-        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-
-          <div class="card-body">
-            <h5 class="card-title">Total Products</h5>
-            <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12</p>
-          </div>
-        </div>
-        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-
-          <div class="card-body">
-            <h5 class="card-title">Running Offers</h5>
-            <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p>
-          </div>
-        </div>
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Total Shops&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-            <p class="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-
-
+    
+      
+  </ul>
+ 
 
 </body>
 

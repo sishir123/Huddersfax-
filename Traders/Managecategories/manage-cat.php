@@ -29,16 +29,16 @@ $userid = $_SESSION['id'];
         body {
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
-            background: rgba(71, 147, 227, 1);
+            background: #FFE799;
         }
 
         a {
             text-decoration: none;
             color: #4FC3A1;
+            font-size: 20px;
         }
 
-        
-
+    
         .table {
             height: 300px;
             width: 300px;
@@ -179,13 +179,16 @@ $userid = $_SESSION['id'];
                 display: block;
                 text-align: center;
             }
+            
+
+           
         }
     </style>
     <title>Document</title>
 </head>
 <body>
-    <button class="btn btn1"><a href="./add-cat.php">Add Categories</a></button>
-    <button class="btn btn1"><a href="../Dashboard.php"> Dashboard</a></button>
+    <button class="btn btn1"><a href="./add-cat.php" class="buton">Add Categories</a></button>
+    <button class="btn btn1"><a href="../Dashboard.php" class="buton"> Dashboard</a></button>
 
     <div class="table-wrapper">
         <table class="fl-table">
@@ -209,16 +212,17 @@ $userid = $_SESSION['id'];
                     echo '
                 <tr>
     <td>' . $value['CATEGORY_TYPE'] . '</td>
-    <td> <a href = "delete-products.php?id=' . $value['PRODUCT_CATEGORY_ID'] . ' ">Delete</a></td>
+    <td> <a href = "delete-cat.php?id=' . $value['PRODUCT_CATEGORY_ID'] . ' ">Delete</a></td>
 </tr>
-<tbody>
-</table>
-</div>
+
+
     ';
                 }
             }
             ?>
+
         </table>
+        </div>
 </body>
 
 </html>

@@ -129,75 +129,39 @@ if(isset($_SESSION['id'])){
     ?>
 
     <!-- Subscribe Handlebar -->
-
     <div class="Subscribe-handlebar">
-      <div class="updates">
-        <h6 class="big-text">Dont miss out any updated<br /></h6>
-        <p class="short-text">
-          Subscribe to Huddersfax mart. Get the latest product updates and
-          <br />special offers delivered right to your inbox.
-        </p>
-      </div>
-      <div class="Email-placeholder">
-        <input
-          type="email"
-          id="email"
-          name="myGeeks"
-          placeholder="Enter your Email"
-          class="Email-place"
-        />
-        <a href="#" class="Subscribe-text"> Subscribe</a> <br /><br />
-      </div>
-    </div>
 
+<div class="updates">
+    <h6 class="big-text">Dont miss out any updated<br></h6>
+    <p class="short-text">Subscribe to Huddersfax mart. Get the
+        latest product updates
+        and <br>special offers delivered right to your inbox.</p>
+</div>
+<div class="Email-placeholder">
+    <form action="" method="post">
+        <input type="email" id="email" name="myGeeks" placeholder="Enter your Email" class="Email-place">
+        <button type =  "submit" value="subscribe" name="subscribe" class="btn btn1">Suscribe </button>
+        <!-- <a href="#" class="Subscribe-text"> Subscribe</a></button>--> <BR><br> 
+    </form>
+    <?php
+    if (isset($_POST['subscribe'])) {
+        $to = $_POST['myGeeks'];
+        $subject = 'Connected with Huddersfax';
+        $message = "Hello Sir/Mam !\n\nThank you for choosing us. See you again soon.";
+        $headers = "From: huddersfaxmart@gmail.com\r\nReply-To: kharelsishir1000@gmail.com";
+        $mail_sent = mail($to, $subject, $message, $headers);
+        if ($mail_sent == true) {
+           
+        } else {
+            echo "Mail failed";
+        }
+    }
+    ?>
+</div>
+</div>
     <!-- footer -->
-    <div class="footer-container">
-      <div class="Contact-row">
-        <div class="Needhelp-text">Need Help?</div>
-        <div class="middle">
-          <a href="Contact-us-page.php"><button class="btn btn1">Contact Us</button></a>
-        </div>
-      </div>
-
-      <div class="Links">
-        <ol>
-          <li><a href="Homepage.php" class="links-btn">Home</a></li>
-          <li><a href="#" class="links-btn">Bakery</a></li>
-          <li><a href="#" class="links-btn">Butchers</a></li>
-          <li><a href="#" class="links-btn">Greengrocer</a></li>
-          <li><a href="#" class="links-btn">Fishmonger</a></li>
-          <li><a href="#" class="links-btn">Delicatessen</a></li>
-        </ol>
-      </div>
-
-      <div class="policies Links">
-        <ol>
-          <li><a href="#" class="links-btn">Refund Policy</a></li>
-          <li><a href="#" class="links-btn">Return Policy</a></li>
-          <li><a href="#" class="links-btn">Payments</a></li>
-        </ol>
-      </div>
-      <div class="Huddersfax-mart Links">
-        <ol>
-          <li><a href="About-us.php" class="links-btn">About us</a></li>
-          <li><a href="#" class="links-btn">Terms of Service</a></li>
-          <li><a href="#" class="links-btn">Privacy policy</a></li>
-        </ol>
-      </div>
-      <div class="map">
-        <p>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.7891502642515!2d-1.7842727793207414!3d53.64438949499016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487962132bcdb7bb%3A0x653c3a498c896a17!2sHuddersfield%2C%20UK!5e0!3m2!1sen!2snp!4v1681277576705!5m2!1sen!2snp"
-            width="600"
-            height="450"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            class="hudder-map"
-          ></iframe>
-        </p>
-      </div>
-    </div>
+    <?php
+    include('./footer.php');
+?>
   </body>
 </html>

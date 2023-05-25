@@ -6,6 +6,7 @@ include('./session-trader.php');
 $category = $_SESSION['Category'];
 $product = $_GET['id'];
 $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+
 $SQLI = "SELECT * FROM PRODUCT WHERE FK2_PRODUCT_CATEGORY_ID = '$category'";
 $queeryok = oci_parse($conn, $SQLI); //Check whether table is there or not
 oci_execute($queeryok);  //If yes then execute

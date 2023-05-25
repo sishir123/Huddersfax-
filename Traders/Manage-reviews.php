@@ -1,7 +1,6 @@
 <?php
 include('../session.php');
 include('./session-trader.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +11,6 @@ include('./session-trader.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../Css/style.css" />
-
-    <title>Document</title>
-
     <style>
         * {
             box-sizing: border-box;
@@ -26,12 +22,12 @@ include('./session-trader.php');
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
             background: #FFE799;
-
         }
 
         a {
             text-decoration: none;
             color: #4FC3A1;
+            font-size: 20px;
         }
 
         
@@ -177,46 +173,37 @@ include('./session-trader.php');
                 text-align: center;
             }
         }
-    </style>
+        </style>
+    <title>Document</title>
 </head>
 <body>
-
-<button class="btn btn1"><a href="add-offers.php">Add Offers</a></button>
-<button class="btn btn1"><a href="./Dashboard.php"> Dashboard</a></button>
-
-
+<button class="btn btn1"><a href="./Dashboard.php">Dashboard</a></button>
 
 <div class="table-wrapper">
         <table class="fl-table">
             <thead>
   <tr>
-    <th>Offer Start Date</th>
-    <th>Offer End Date</th>
-    <th>Offer Percentage</th>
+    <th>Review Date</th>
+    <th>Review</th>
+    <th>Review Rating</th>
     <th>Delete</th>
-    <th>Update</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM OFFER";
+ $SQLI = "SELECT * FROM REVIEW";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
  while ($value = oci_fetch_array($queeryok)) {
     echo '
     <tr>
-    <td>'.$value['OFFER_START_DATE'].'</td>
-    <td>'.$value['OFFER_END_DATE'].'</td>
-    <td>'.$value['OFFER_PERCENTAGE'].'</td>
-    <td> <a href = "update-offers.php?id=' . $value['OFFER_ID'] . ' ">Update</a></td>    
-    <td> <a href = "delete-offers.php?id='.$value['OFFER_ID'].' ">Delete</a></td>
-
-</tr>
+    <td>'.$value['REVIEW_DATE'].'</td>
+    <td>'.$value['REVIEW_FEEDBACK'].'</td>
+    <td>'.$value['REVIEW_RATING'].'</td>
+    <td> <a href = "delete-review.php?id='.$value['REVIEW_ID'].' ">Delete</a></td></tr>
 
 ';
-    
  }
-
 ?>
    
 </table>

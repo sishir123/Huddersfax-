@@ -76,7 +76,7 @@ if(isset($_SESSION['id'])){
     <p class="featured-text">Featured</p>
     <?php
     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-    $SQL = "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID WHERE ROWNUM <= 4";
+    $SQL = "SELECT * FROM PRODUCT, SHOP WHERE PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID AND PRODUCT.PRODUCT_STATUS = 1 AND ROWNUM <= 4";
     $queery = oci_parse($conn, $SQL); //Check whether shop is there or not
     oci_execute($queery);
     
@@ -131,7 +131,7 @@ echo '
 
     <?php
     $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-    $SQL = "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID";
+    $SQL = "SELECT * FROM PRODUCT, SHOP WHERE PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID AND PRODUCT.PRODUCT_STATUS = 1";
     $queery = oci_parse($conn, $SQL);
     oci_execute($queery);
     echo '<div class="featured-products">';
@@ -163,34 +163,34 @@ echo '
 
     <div class="Subscribe-handlebar">
 
-        <div class="updates">
-            <h6 class="big-text">Dont miss out any updated<br></h6>
-            <p class="short-text">Subscribe to Huddersfax mart. Get the
-                latest product updates
-                and <br>special offers delivered right to your inbox.</p>
-        </div>
-        <div class="Email-placeholder">
-            <form action="" method="post">
-                <input type="email" id="email" name="myGeeks" placeholder="Enter your Email" class="Email-place">
-                <input type =  "submit" value="subscribe" name="subscribe">
-                <!-- <a href="#" class="Subscribe-text"> Subscribe</a></button>--> <BR><br> 
-            </form>
-            <?php
-            if (isset($_POST['subscribe'])) {
-                $to = $_POST['myGeeks'];
-                $subject = 'Huddersfax Verification';
-                $message = "Hello Sir/Mam !\n\nThank you for choosing us. See you again soon.";
-                $headers = "From: huddersfaxmart@gmail.com\r\nReply-To: kharelsishir1000@gmail.com";
-                $mail_sent = mail($to, $subject, $message, $headers);
-                if ($mail_sent == true) {
-                    echo "Mail Sent";
-                } else {
-                    echo "Mail failed";
-                }
-            }
-            ?>
-        </div>
-    </div>
+<div class="updates">
+    <h6 class="big-text">Dont miss out any updated<br></h6>
+    <p class="short-text">Subscribe to Huddersfax mart. Get the
+        latest product updates
+        and <br>special offers delivered right to your inbox.</p>
+</div>
+<div class="Email-placeholder">
+    <form action="" method="post">
+        <input type="email" id="email" name="myGeeks" placeholder="Enter your Email" class="Email-place">
+        <button type =  "submit" value="subscribe" name="subscribe" class="btn btn1">Suscribe </button>
+        <!-- <a href="#" class="Subscribe-text"> Subscribe</a></button>--> <BR><br> 
+    </form>
+    <?php
+    if (isset($_POST['subscribe'])) {
+        $to = $_POST['myGeeks'];
+        $subject = 'Connected with Huddersfax';
+        $message = "Hello Sir/Mam !\n\nThank you for choosing us. See you again soon.";
+        $headers = "From: huddersfaxmart@gmail.com\r\nReply-To: kharelsishir1000@gmail.com";
+        $mail_sent = mail($to, $subject, $message, $headers);
+        if ($mail_sent == true) {
+           
+        } else {
+            echo "Mail failed";
+        }
+    }
+    ?>
+</div>
+</div>
 
     <!-- footer -->
     <?php

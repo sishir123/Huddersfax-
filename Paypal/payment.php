@@ -18,8 +18,8 @@ $dbConfig = [
 // for your site.
 $paypalConfig = [
     'email' => 'sb-uptbr25717738@business.example.com',
-    'return_url' => 'http://localhost/project/paymentsuccessful.html',
-    'cancel_url' => 'http://localhost/project/payment-cancelled.html',
+    'return_url' => 'http://localhost/Hm-Ecommerce-master/Paypal/paymentsuccessful.php',
+    'cancel_url' => 'http://localhost/Hm-Ecommerce-master/Addtocart.php',
     'notify_url' => 'http://localhost/project/payment.php'
 ];
 
@@ -27,7 +27,7 @@ $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 
 
 // Product being purchased.
 $itemName = 'Test Item';
-$itemAmount = 5.00;
+$itemAmount = $_POST['amount'];
 
 // Include Functions
 require 'functions.php';

@@ -3,7 +3,9 @@ include('../session.php');
 include('./session-trader.php');
 
 $id = $_SESSION['id'];
+if(isset($_SESSION['Category'])){
 $category = $_SESSION['Category'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +29,13 @@ $category = $_SESSION['Category'];
         body {
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
-            background: rgba(71, 147, 227, 1);
+            background: #FFE799;
         }
 
         a {
             text-decoration: none;
             color: #4FC3A1;
+            font-size: 20px;
         }
 
         
@@ -184,6 +187,7 @@ $category = $_SESSION['Category'];
 </head>
 
 <body>
+    
 
     <button class="btn btn1"><a href="./Dashboard.php"> Dashboard</a></button>
     <button  class="btn btn1"><a href="add-products.php"> Add Products</a></button>
@@ -207,11 +211,12 @@ $category = $_SESSION['Category'];
         </tr>
         <?php
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-        $SQLI = "SELECT * FROM PRODUCT WHERE FK2_PRODUCT_CATEGORY_ID = '$category'";
+            $SQLI = "SELECT * FROM PRODUCT, SHOP, S_USER WHERE PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID AND SHOP.FK1_USER_ID = S_USER.USER_ID AND S_USER.USER_ID = $id";
         $queeryok = oci_parse($conn, $SQLI); //Check whether table is there or not
         oci_execute($queeryok);  //If yes then ececute
 
         while ($value = oci_fetch_array($queeryok)) {
+            var_dump($value);
 
             if($value['PRODUCT_STATUS'] == 1){
                 
@@ -230,14 +235,13 @@ $category = $_SESSION['Category'];
     <td> <a href = "update-products.php?id=' . $value['PRODUCT_ID'] . ' ">Update</a></td>                   
     <td> <a href = "delete-products.php?id=' . $value['PRODUCT_ID'] . ' ">Delete</a></td>                   
     </tr>
-    <tbody>
-</table>
-</div>';
+';
 }
         }
 
         ?>
-
+       
+</div>
     </table>
 </body>
 

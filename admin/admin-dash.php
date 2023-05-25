@@ -5,6 +5,7 @@ include('./session-admin.php');
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Huddersfax Mart</title>
@@ -28,12 +29,89 @@ include('./session-admin.php');
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+
+
+    <!-- Inner css -->
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica;
+            -webkit-font-smoothing: antialiased;
+            background: #FFE799;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 22px;
+        }
+        a:hover {
+  color: #013220;
+  text-decoration: none;
+}
+
+i{
+    color: #013220;
+  }
+  .list-group {
+      /* background: rgba(71, 147, 227, 1);
+       */
+      background: #FFE799;
+      height: 100vh;
+      margin-top: 5%;
+
+    }
+
+    .list-group-item {
+      background: rgba(71, 147, 227, 1);
+      border: none;
+      height: 70px;
+      text-decoration: none;
+    }
+
+  a {
+      text-decoration: none;
+      padding-left: 5px;
+      color: #000;
+    }
+    a:hover{
+      font-weight: bold;
+      padding-left: 5px;
+      text-decoration: none;
+    }
+
+        .table {
+            height: 300px;
+            width: 300px;
+            margin-left: 30rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: black;
+            padding: 30px 0;
+            font-weight:bolder;
+        }
+
+       </style>
+
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <input type="checkbox" id="check" />
+
     <nav>
         <a href="Homepage.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
@@ -55,18 +133,18 @@ include('./session-admin.php');
 
     <div class="container">
         <div class="title">
-            <h2>Huddersfax Mart Admin Dashboard</h2>
+            <h1>Huddersfax Mart Admin Dashboard</h1>
         </div>
 
         <!-- Side nav -->
 
         <ul class="list-group">
-            <li class="list-group-item"> <a href="./monitor-customer.php">Monitor Customer</a></li>
-            <li class="list-group-item"> <a href="./monitor-reviews.php">Monitor Reviews</a></li>
-            <li class="list-group-item"> <a href="./manage-prod-admin.php"> Manage Products</a></li>
-            <li class="list-group-item"> <a href="./manage-shop.php"> Manage Shops</a></li>
-            <li class="list-group-item"> <a href="./Manage-traders.php"> Manage Traders</a></li>
-            <li class="list-group-item">Generate Reports</li>
+            <li class="btn btn1"><i class="fa-solid fa-person"></i> <a href="./monitor-customer.php">Monitor Customer</a></li>
+            <li class="btn btn1"><i class="fa-solid fa-star"></i> <a href="./monitor-reviews.php">Monitor Reviews</a></li>
+            <li class="btn btn1"><i class="fa-solid fa-cube"></i> <a href="./manage-prod-admin.php"> Manage Products</a></li>
+            <li class="btn btn1"><i class="fa-solid fa-shop"></i> <a href="./manage-shop.php"> Manage Shops</a></li>
+            <li class="btn btn1"><i class="fa-solid fa-person"></i> <a href="./Manage-traders.php"> Manage Traders</a></li>
+            <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i> <a href="./Manage-traders.php">Generate Reports</li>
         </ul>
     </div>
 </body>
