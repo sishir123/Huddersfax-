@@ -22,7 +22,7 @@ if(isset($_POST['submit-try'])){
   if($executer){
     echo '<script>alert("Thanks for your Feedback")</script>';
     if(1){
-        header('Location:'. $_SERVER["HTTP_REFERER"]);
+        // header('Location:'. $_SERVER["HTTP_REFERER"]);
     }
   }
 }

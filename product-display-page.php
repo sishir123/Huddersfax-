@@ -70,7 +70,7 @@ if (isset($_SESSION['id'])) {
           ' . $value['PRODUCT_DESCRIPTION'] . '
           </div>
           <div class="product-item-price">
-            $5 &nbsp; &nbsp;<s> ' . $value['PRICE'] . ' </s> &nbsp; -50%
+            $ ' . $value['PRICE'] . '  &nbsp;
           </div>
           <div class="product-rating">
             <i class="fa-solid fa-star"></i>
@@ -79,7 +79,7 @@ if (isset($_SESSION['id'])) {
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
           </div>
-          <div class="product-stock-checker">Stock available : 10</div>
+          <div class="product-stock-checker">Stock available : ' . $value['PRODUCT_STOCK'] . '</div>
           <div class="product-add-to-cart">
           
             <a href = "./cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -197,7 +197,7 @@ if (isset($_SESSION['id'])) {
   <div class="Subscribe-handlebar">
 
 <div class="updates">
-    <h6 class="big-text">Dont miss out any updated<br></h6>
+    <h6 class="big-text">Dont miss out any updates<br></h6>
     <p class="short-text">Subscribe to Huddersfax mart. Get the
         latest product updates
         and <br>special offers delivered right to your inbox.</p>
@@ -222,7 +222,7 @@ if (isset($_SESSION['id'])) {
         }
     }
     ?>
-</div>
+</div>  
 </div>
 
   <!-- footer -->

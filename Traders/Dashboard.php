@@ -146,7 +146,7 @@
       <li class="btn btn1"><i class="fa-solid fa-tag"></i><a href="./Manage-offers.php">Manage Offers </a></li>
       <li class="btn btn1"><i class="fa-solid fa-shop"></i><a href="Manage-shop.php">Manage Shops</a></li>
       <li class="btn btn1"><i class="fa-solid fa-shop"></i><a href="Manage-reviews.php">Manage Reviews</a></li>
-      <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i><a href="">View Report</a></li>
+      <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i><a href="http://localhost:8080/apex/f?p=102:LOGIN_DESKTOP:9824985360032:::::">View Report</a></li>
     </div>
     
       

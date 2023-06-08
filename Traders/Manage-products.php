@@ -216,7 +216,7 @@ $category = $_SESSION['Category'];
         oci_execute($queeryok);  //If yes then ececute
 
         while ($value = oci_fetch_array($queeryok)) {
-            var_dump($value);
+            
 
             if($value['PRODUCT_STATUS'] == 1){
                 

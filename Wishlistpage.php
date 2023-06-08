@@ -22,7 +22,7 @@ if(isset($_SESSION['id'])){
 
     <!-- CSS -->
     <link rel="stylesheet" href="Css/wishlist.css?v=<?php echo time(); ?>" />
-
+  
     <link href="Css/style.css?v=<?php echo time(); ?>" rel="stylesheet"/>
 
     <!-- Bootstrap scripts -->

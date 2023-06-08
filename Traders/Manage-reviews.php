@@ -1,6 +1,10 @@
 <?php
 include('../session.php');
 include('./session-trader.php');
+
+if(isset($_SESSION['id'])){
+    $userid = $_SESSION['id'];   
+}
 ?>
 
 <!DOCTYPE html>
@@ -183,6 +187,7 @@ include('./session-trader.php');
         <table class="fl-table">
             <thead>
   <tr>
+  <th>Product Name</th>
     <th>Review Date</th>
     <th>Review</th>
     <th>Review Rating</th>
@@ -190,13 +195,14 @@ include('./session-trader.php');
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM REVIEW";
+ $SQLI = "SELECT * FROM REVIEW JOIN PRODUCT ON REVIEW.FK1_PRODUCT_ID = PRODUCT.PRODUCT_ID JOIN PRODUCT_CATEGORY ON PRODUCT_CATEGORY.PRODUCT_CATEGORY_ID = PRODUCT.FK2_PRODUCT_CATEGORY_ID WHERE PRODUCT_CATEGORY.FK1_USER_ID = $userid";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
  while ($value = oci_fetch_array($queeryok)) {
     echo '
     <tr>
+    <td>'.$value['PRODUCT_NAME'].'</td>
     <td>'.$value['REVIEW_DATE'].'</td>
     <td>'.$value['REVIEW_FEEDBACK'].'</td>
     <td>'.$value['REVIEW_RATING'].'</td>

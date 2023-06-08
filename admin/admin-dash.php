@@ -113,7 +113,7 @@ i{
     <!-- Navbar -->
 
     <nav>
-        <a href="Homepage.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
+        <a href="./admin-dash.php"><img src="../images/logo.png" alt="logo" class="logo"></a>
         <ol>
             <li>
                 <a href="./Edit profile/admin-edit-profile.php" class="Hover-btn"><i class="fa-solid fa-user"></i> Edit profile</a>
@@ -144,7 +144,7 @@ i{
             <li class="btn btn1"><i class="fa-solid fa-cube"></i> <a href="./manage-prod-admin.php"> Manage Products</a></li>
             <li class="btn btn1"><i class="fa-solid fa-shop"></i> <a href="./manage-shop.php"> Manage Shops</a></li>
             <li class="btn btn1"><i class="fa-solid fa-person"></i> <a href="./Manage-traders.php"> Manage Traders</a></li>
-            <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i> <a href="./Manage-traders.php">Generate Reports</li>
+            <li class="btn btn1"><i class="fa-solid fa-chart-simple"></i> <a href="http://localhost:8080/apex/f?p=102:LOGIN_DESKTOP:9824985360032:::::">Generate Reports </li>
         </ul>
     </div>
 </body>

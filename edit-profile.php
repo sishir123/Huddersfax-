@@ -23,7 +23,7 @@ if(isset($_POST['Submit'])){
     oci_execute($queryStatus);
     if($queryStatus){
         
-        // header('../Customer-edit-profile.php');
+        header('./Customer-edit-profile.php');
 
     }else{
         echo "Error";

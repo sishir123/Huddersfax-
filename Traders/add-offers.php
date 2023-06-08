@@ -285,7 +285,7 @@ echo $pname;
     ?>
 </select>
 </div>
-  <input type="submit" class="btn" name="codesubmit">Submit</button>
+  <input type="submit" class="btn" name="codesubmit"></button>
 </form>
 </div>
 </div>

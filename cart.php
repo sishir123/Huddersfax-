@@ -3,8 +3,11 @@
 session_start();
 if(isset($_SESSION['id'])){
     $userid = $_SESSION['id'];
+}else{
+    $userid=null;
 }
 
+if(isset($_SESSION['id'])){
 $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
 $product = $_GET['id'];
 $cartItem = "SELECT * FROM PRODUCT WHERE PRODUCT_ID = '$product'";
@@ -15,7 +18,7 @@ if ($queery2) {
     $value =  oci_fetch_array($queery2);
     $cartitem = $value['PRODUCT_NAME'];
     oci_free_statement($queery2);
-    $cartID = "SELECT * FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='0'";
+    $cartID = "SELECT * FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1'";
     $queery3 = oci_parse($conn, $cartID);
     oci_execute($queery3);
 
@@ -24,8 +27,8 @@ if ($queery2) {
         $value3 = oci_fetch_array($queery3);
         $cartid = $value3['CART_ID'];
        
-        if($value3['FK1_USER_ID'] == $userid AND $value3['STATUS']=='0'){
-        $SQLI2 = "SELECT * FROM CART_PRODUCT WHERE FK1_PRODUCT_ID = '$product'";
+        if($value3['FK1_USER_ID'] == $userid AND $value3['STATUS']=='1'){
+        $SQLI2 = "SELECT * FROM CART_PRODUCT WHERE FK1_PRODUCT_ID = '$product' AND FK2_CART_ID=(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1')";
         $queery2 = oci_parse($conn, $SQLI2);
         oci_execute($queery2);
 
@@ -44,16 +47,17 @@ if ($queery2) {
                 oci_execute($queery4);
                 if($queery4){
             
-                    header('Location:'. $_SERVER["HTTP_REFERER"]);
+                    // header('Location:'. $_SERVER["HTTP_REFERER"]);
                 }
 
             }
         }
 
         $_SESSION['cartid'] = $cartid;
+        
        
     }else{
-        $SQL = "INSERT INTO CART(FK1_USER_ID,STATUS) VALUES ('$userid','0') ";
+        $SQL = "INSERT INTO CART(FK1_USER_ID,STATUS) VALUES ('$userid','1') ";
         $queery = oci_parse($conn, $SQL);
         oci_execute($queery);
         if($queery){
@@ -68,7 +72,7 @@ if ($queery2) {
                 $queery4 = oci_parse($conn, $SQLI);
                 oci_execute($queery4);
                 if($queery4){
-                    header('Location:'. $_SERVER["HTTP_REFERER"]);
+                    // header('Location:'. $_SERVER["HTTP_REFERER"]);
                     
                 }
             }
@@ -78,4 +82,5 @@ if ($queery2) {
     
     } 
     }
+}
 

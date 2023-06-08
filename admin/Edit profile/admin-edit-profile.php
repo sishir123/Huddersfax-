@@ -68,10 +68,6 @@ echo '<form method="POST" action="./edit-profile.php?id='.$profile.'">';
     <label for="exampleInputEmail1" class="form-label">Address</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Address"   value="<?php echo $update['ADDRESS']; ?>">
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label" >User image</label>
-    <input type="file" class="form-control" id="exampleInputPassword1" name="UserImage">
-  </div>
   
   <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
 </form>

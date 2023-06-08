@@ -183,6 +183,7 @@ include('./session-admin.php');
         <table class="fl-table">
             <thead>
   <tr>
+    <th>Product Name</th>
     <th>Review Date</th>
     <th>Review</th>
     <th>Review Rating</th>
@@ -190,13 +191,14 @@ include('./session-admin.php');
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM REVIEW";
+ $SQLI = "SELECT * FROM REVIEW, PRODUCT WHERE REVIEW.FK1_PRODUCT_ID = PRODUCT.PRODUCT_ID";
  $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok);  //If yes then ececute
 
  while ($value = oci_fetch_array($queeryok)) {
     echo '
     <tr>
+    <td>'.$value['PRODUCT_NAME'].'</td>
     <td>'.$value['REVIEW_DATE'].'</td>
     <td>'.$value['REVIEW_FEEDBACK'].'</td>
     <td>'.$value['REVIEW_RATING'].'</td>

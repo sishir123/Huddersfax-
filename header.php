@@ -13,25 +13,17 @@
             <li><a href="Addtocart.php" class="Hover-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
             <?php
             if(isset($_SESSION['user']) && isset($_SESSION['email']) && $_SESSION['role'] == 'USER'){
-                echo '<li><a href="Customer-edit-profile.php" class="Hover-btn"><i class="fa-solid fa-right-to-profile"></i> Profile</a></li>';
-                echo '<li><a href="./logout.php" class="Hover-btn"><i class="fa-solid fa-right-to-profile"></i> Logout</a></li>';
+                echo '<li><a href="Customer-edit-profile.php" class="Hover-btn"><i class="fa-solid fa-user"></i>Profile</a></li>';
+                echo '<li><a href="./logout.php" class="Hover-btn"><i class="fa-sharp fa-solid fa-right-from-bracket"></i>Logout</a></li>';
             }else{
             ?>
             <li><a href="Login/login.php" class="Hover-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
             <?php
             }
             ?>
-            <li>
+            <li><a href="order-history.php" class="Hover-btn"><i class="fa-solid fa-cart-shopping"></i>Order</a></li>
 
-                <select name="categories-dropdown" id="categories">
-                    <option selected disabled value="">Categories</option>
-                    <option value="">Bakery</option>
-                    <option value="">Butcher</option>
-                    <option value="">Green Grocer</option>
-                    <option value="">Fish Monger</option>
-                    <option value="">Delicatessen</option>
-                </select>
-            </li>
+            
         </ol>
        
     </nav>

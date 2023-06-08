@@ -55,7 +55,7 @@ if (isset($_SESSION['id'])) {
 
 
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-        $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='0') ";
+        $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1') ";
         $queery = oci_parse($conn, $SQL);
         oci_execute($queery);
         $totalprice = array();
@@ -134,7 +134,7 @@ if (isset($_SESSION['id'])) {
 
               <?php
               $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-              $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
+              $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1') ";
               $queery = oci_parse($conn, $SQL);
               oci_execute($queery);
               ?>

@@ -3,6 +3,10 @@ session_start();
 if (isset($_SESSION['id'])) {
     $userid = $_SESSION['id'];
 }
+if(isset($_GET['categoryName'])){
+    $na= $_GET['categoryName'];
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,12 +71,13 @@ if (isset($_SESSION['id'])) {
         <!-- Default dropright button -->
 <div class="btn-group dropright">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    Alfabetically
+    Alphabetically
   </button>
   <div class="dropdown-menu">
-    
-  <p>A-Z</p>
-  <p>Z-A</p>
+  <form method="post">
+    <input type="submit" name="a-z" value="A - Z">
+    <input type="submit" name="z-a" value="Z - A">
+  </form>
   </div>
 </div>
 
@@ -81,10 +86,12 @@ if (isset($_SESSION['id'])) {
    Price
   </button>
   <div class="dropdown-menu">
-    
-  <p>High to Low</p>
-  <p>Low to High</p>
+  <form method="post">
+    <input type="submit" name="pricehigh" value="High to Low">
+    <input type="submit" name="pricelow" value="Low to High">
+  </form>
   </div>
+
 </div>
     </div>
 
@@ -93,8 +100,6 @@ if (isset($_SESSION['id'])) {
 
 
     <!-- For Searching-->
-
-
     <?php
     if (isset($_POST['search'])) {
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
@@ -113,7 +118,7 @@ if (isset($_SESSION['id'])) {
                          <img src=./Traders/pro-img/' . $val['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
                         <div class="in-stock flex-verticle">
                             <h6><B>' . $val['SHOP_NAME'] . '</B> </h6>
-                            <p class="instock-text"> In Stock </p>
+                            <p class="instock-text"> '.$val['PRODUCT_STOCK'].' in Stock </p>
                         </div>
                         <h6>' . $val['PRODUCT_NAME'] . '</h6>
                         <p class="price">$Price : ' . $val['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
@@ -133,6 +138,178 @@ if (isset($_SESSION['id'])) {
     }
 }
         oci_close($conn);
+    }elseif(isset($_POST['pricehigh'])){
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $pricesort= "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID ORDER BY PRODUCT.PRICE DESC ";
+        $pricequery= oci_parse($conn,$pricesort);
+        oci_execute($pricequery);
+        echo '<div class="featured-products">';
+        while ($valueprice = oci_fetch_array($pricequery)) {
+
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $valueprice['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $valueprice['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $valueprice['SHOP_NAME'] . '</B> </h6>
+                        <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
+                    </div>
+                    <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $valueprice['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
+                </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+
+        
+
+    } elseif(isset($_POST['pricelow'])){
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $pricesort= "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID ORDER BY PRODUCT.PRICE ASC ";
+        $pricequery= oci_parse($conn,$pricesort);
+        oci_execute($pricequery);
+        echo '<div class="featured-products">';
+        while ($valueprice = oci_fetch_array($pricequery)) {
+
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $valueprice['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $valueprice['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $valueprice['SHOP_NAME'] . '</B> </h6>
+                        <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
+                    </div>
+                    <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $valueprice['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
+                </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+
+    }elseif(isset($_POST['a-z'])){
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $pricesort= "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID ORDER BY PRODUCT.PRODUCT_NAME ASC ";
+        $pricequery= oci_parse($conn,$pricesort);
+        oci_execute($pricequery);
+        echo '<div class="featured-products">';
+        while ($valueprice = oci_fetch_array($pricequery)) {
+
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $valueprice['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $valueprice['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $valueprice['SHOP_NAME'] . '</B> </h6>
+                        <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
+                    </div>
+                    <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $valueprice['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
+                </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+
+        
+
+    }elseif(isset($_POST['z-a'])){
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $pricesort= "SELECT * FROM PRODUCT JOIN SHOP ON PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID ORDER BY PRODUCT.PRODUCT_NAME DESC ";
+        $pricequery= oci_parse($conn,$pricesort);
+        oci_execute($pricequery);
+        echo '<div class="featured-products">';
+        while ($valueprice = oci_fetch_array($pricequery)) {
+
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $valueprice['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $valueprice['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $valueprice['SHOP_NAME'] . '</B> </h6>
+                        <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
+                    </div>
+                    <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $valueprice['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
+                </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+
+        
+
+    }elseif(isset($_GET['categoryName'])){
+        $na= $_GET['categoryName'];
+        $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+        $catSQL= "SELECT * FROM PRODUCT_CATEGORY WHERE CATEGORY_TYPE='$na'";
+        $catQuery= oci_parse($conn,$catSQL);
+        oci_execute($catQuery);
+
+        if($catQuery){
+            $catValue= oci_fetch_array($catQuery);
+            $category_id= $catValue['PRODUCT_CATEGORY_ID'];
+            $SQL = "SELECT * FROM PRODUCT, SHOP WHERE PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID AND PRODUCT.PRODUCT_STATUS = 1 AND PRODUCT.FK2_PRODUCT_CATEGORY_ID='$category_id'";
+        $queery = oci_parse($conn, $SQL);
+        oci_execute($queery);
+        echo '<div class="featured-products">';
+        while ($value = oci_fetch_array($queery)) {
+
+            echo '
+        <div class="card">
+        <a href = "product-display-page.php?id=' . $value['PRODUCT_ID'] . '">
+                     <img src=./Traders/pro-img/' . $value['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
+                    <div class="in-stock flex-verticle">
+                        <h6><B>' . $value['SHOP_NAME'] . '</B> </h6>
+                    <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
+                    </div>
+                    <h6>' . $value['PRODUCT_NAME'] . '</h6>
+                    <p class="price">$Price : ' . $value['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p>' . $value['PRODUCT_DESCRIPTION'] . '</p>
+                    <div class="flex-verticle">
+                       <a href = "cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+                        <p class="addtocart-icon">
+                        <a href= "wish.php?id=' . $value['PRODUCT_ID'] . '"><i class="fa-regular fa-heart black"></i></a></p>
+                    </div>
+                </div>
+            
+            ';
+        }
+        echo '</div>';
+        oci_close($conn);
+
+        }
+        
+
     }else{
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
         $SQL = "SELECT * FROM PRODUCT, SHOP WHERE PRODUCT.FK1_SHOP_ID = SHOP.SHOP_ID AND PRODUCT.PRODUCT_STATUS = 1";
@@ -147,10 +324,10 @@ if (isset($_SESSION['id'])) {
                      <img src=./Traders/pro-img/' . $value['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%"></a>
                     <div class="in-stock flex-verticle">
                         <h6><B>' . $value['SHOP_NAME'] . '</B> </h6>
-                        <p class="instock-text"> In Stock </p>
+                        <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $value['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $value['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $value['PRICE'] . ' &nbsp;&nbsp;&nbsp;</p>
                     <p>' . $value['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>

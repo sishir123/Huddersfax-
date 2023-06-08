@@ -47,13 +47,9 @@ if(isset($_SESSION['id'])){
             <h1>Our Best Selling Products</h1>
         </div>
         <div class="down-text">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Eius sunt magni est nulla cum eum consequuntur cupiditate
-                molestias nemo esse dolore ullam odio itaque illo, maiores
-                suscipit nobis reiciendis, consequatur accusamus commodi?
-                Minima molestiae qui autem quis, enim eos doloremque libero
-                blanditiis debitis labore nesciunt ab, ipsam facilis,
-                tempore nihil!</p>
+            <p>Introducing our best-selling product lineup for our website, where we cater to the diverse needs of meat lovers, vegetable enthusiasts, bakery aficionados, and fish connoisseurs. With a passion for quality and a commitment to exceptional customer service, we provide a one-stop destination for all your culinary desires.
+
+</p>
         </div>
     </div>
 
@@ -92,10 +88,10 @@ echo '
             <img src=./Traders/pro-img/'.$value['PRODUCT_IMAGE'].' alt="Img" style="width:100%"></a>
                 <div class="in-stock flex-verticle">
                     <h6><B>'.$value['SHOP_NAME'].'</B></h6>
-                    <p class="instock-text"> In Stock </p>
+                    <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
                 </div>
                 <h6>'.$value['PRODUCT_NAME'].'</h6>
-                <p class="price">$Price : '.$value['PRICE'].' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                <p class="price">$Price : '.$value['PRICE'].' &nbsp;&nbsp;&nbsp;</p>
                 <p>'.$value['PRODUCT_DESCRIPTION'].'</p>
                 <div class="flex-verticle">
                 <a href = "cart.php?id='.$value['PRODUCT_ID'].'"> <button class="btn btn1">Add to cart</button></a>
@@ -117,11 +113,11 @@ echo '
         <div class="category-title">
             <ol>
                 <li><a href="./Category-display-page.php">All products</a></li>
-                <li><a href="#">Bakery</a></li>
-                <li><a href="#">Butchers</a></li>
-                <li><a href="#">Green Grocer</a></li>
-                <li><a href="#">Fish Monger</a></li>
-                <li><a href="#">Delicatessen</a></li>
+                 <li><?php echo ' <a href="Category-display-page.php?categoryName=Bakery">Bakery</a> '; ?></li>
+                <li><?php echo ' <a href="Category-display-page.php?categoryName=Butcher">Butcher</a> '; ?></li>
+                <li><?php echo ' <a href="Category-display-page.php?categoryName=Greengrocer">Greengrocer</a> '; ?></li>
+                <li><?php echo ' <a href="Category-display-page.php?categoryName=Fishmonger">Fishmonger</a> '; ?></li>
+                <li><?php echo ' <a href="Category-display-page.php?categoryName=Delicatessen">Delicatessen</a> '; ?></li>
             </ol>
         </div>
     </div>
@@ -141,7 +137,7 @@ echo '
     <img src=./Traders/pro-img/'.$value['PRODUCT_IMAGE'].' alt="Img" style="width:100%"></a>
                 <div class="in-stock flex-verticle">
                     <h6><B>'.$value['SHOP_NAME'].'</B> </h6>
-                    <p class="instock-text"> In Stock </p>
+                    <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
                 </div>
                 <h6>'.$value['PRODUCT_NAME'].'</h6>
                 <p class="price">$Price : '.$value['PRICE'].' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
@@ -164,7 +160,7 @@ echo '
     <div class="Subscribe-handlebar">
 
 <div class="updates">
-    <h6 class="big-text">Dont miss out any updated<br></h6>
+    <h6 class="big-text">Dont miss out any update<br></h6>
     <p class="short-text">Subscribe to Huddersfax mart. Get the
         latest product updates
         and <br>special offers delivered right to your inbox.</p>

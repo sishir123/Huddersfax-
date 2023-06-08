@@ -196,7 +196,6 @@ include('./session-admin.php');
     <th>Max Order</th>
     <th>Product Image</th>
     <th>Status</th>
-    <th>Action</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');

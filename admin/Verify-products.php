@@ -35,11 +35,11 @@ include('./session-admin.php');
 
         
 
-        .table {
+        /* .table {
             height: 300px;
             width: 300px;
             margin-left: 30rem;
-        }
+        } */
 
         h2 {
             text-align: center;
@@ -53,7 +53,8 @@ include('./session-admin.php');
         /* Table Styles */
 
         .table-wrapper {
-            margin: 30px 70px 70px;
+            width: 100;
+            margin: 30px 70px 90px;
             box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
         }
 
@@ -181,7 +182,7 @@ include('./session-admin.php');
 </head>
 <body>
 
-<button class="btn btn1"><a href="./admin-dash.php"> Dashboard</a></button>
+<button class="btn btn1"><a href="./admin-dash.php">Dashboard</a></button>
 
 <div class="table-wrapper">
         <table class="fl-table">
@@ -226,7 +227,7 @@ include('./session-admin.php');
 
 ?>
    
-
+            </thead>
 </table>
 </div>
 </body>

@@ -75,7 +75,7 @@ if (isset($_SESSION['id'])) {
 
 
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-        $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='0') ";
+        $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1') ";
         $queery = oci_parse($conn, $SQL);
         oci_execute($queery);
         $totalprice = array();
@@ -229,7 +229,7 @@ if (isset($_SESSION['id'])) {
             <p>Total price </p>
             <?php
             $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-            $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid') ";
+            $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUs='1') ";
             $queery = oci_parse($conn, $SQL);
             oci_execute($queery);
             ?>
@@ -247,6 +247,7 @@ if (isset($_SESSION['id'])) {
             <p><?php
                 $Total = $price - $offersdisocunt;
                 echo '$ ' . $Total;
+                $_SESSION['totalamount']=$Total;
                 ?></p>
           </div>
           <?php
@@ -255,13 +256,9 @@ if (isset($_SESSION['id'])) {
           $SQLiiii = "INSERT INTO ORDER_ITEM(ORDER_QUANTITY,ORDER_AMOUNT,FK1_CART_ID,FK2_COLLECTION_ID) VALUES('$quantity','$Total','$cart','$collid')";
           $qqqqqery = oci_parse($conn, $SQLiiii);
             oci_execute($qqqqqery);
-
-          
           }
 
           ?>
-
-
           <form class="paypal" action="./Paypal/payment.php" method="post" id="paypal_form">
             <input type="hidden" name="cmd" value="_xclick" />
             <input type="hidden" name="amount" value="<?php echo $Total; ?>" />
