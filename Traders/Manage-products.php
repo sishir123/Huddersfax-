@@ -206,8 +206,9 @@ $category = $_SESSION['Category'];
             <th>Min Order</th>
             <th>Max Order</th>
             <th>Product Image</th>
-            <th>Delete</th>
             <th>Update</th>
+            <th>Delete</th>
+
         </tr>
         <?php
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');

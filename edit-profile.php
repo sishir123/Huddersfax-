@@ -23,7 +23,7 @@ if(isset($_POST['Submit'])){
     oci_execute($queryStatus);
     if($queryStatus){
         
-        header('./Customer-edit-profile.php');
+        header('Location:' . $_SERVER["HTTP_REFERER"]);
 
     }else{
         echo "Error";

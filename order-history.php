@@ -242,11 +242,18 @@ if(isset($_SESSION['id'])){
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
- $SQLI = "SELECT * FROM ORDER_ITEM";
- $queeryok = oci_parse($conn, $SQLI); //Check whether shop is there or not
- oci_execute($queeryok);  //If yes then ececute
+ $sqLII = "SELECT CART_ID FROM CART WHERE FK1_USER_ID = $userid";
+ 
+ $queeryok = oci_parse($conn, $sqLII); //Check whether shop is there or not
+ oci_execute($queeryok);
+ $cartid = oci_fetch_array($queeryok);
+ if(isset($cartid[0])){
+$cartid = $cartid[0];
+ $SQLI = "SELECT * FROM ORDER_ITEM WHERE FK1_CART_ID = $cartid";
+ $queeryok22 = oci_parse($conn, $SQLI); //Check whether shop is there or not
+ oci_execute($queeryok22);  //If yes then ececute
 
- while ($value = oci_fetch_array($queeryok)) {
+ while ($value = oci_fetch_array($queeryok22)) {
     echo '
     <tr>
     <td>'.$value['ORDER_DATE'].'</td>
@@ -259,6 +266,7 @@ if(isset($_SESSION['id'])){
 ';
     
  }
+}
 
 ?>
    

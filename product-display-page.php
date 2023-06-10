@@ -39,23 +39,29 @@ if (isset($_SESSION['id'])) {
 <body>
   <?php
   include('./header.php');
-  ?>
-
-  <!-- Product-display-container -->
-
-  <?php
+  
+  function offerCount($prdoID){
+    $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
+    $SQL = "SELECT * FROM OFFER WHERE PRODUCT_ID = $prdoID";
+    $queery = oci_parse($conn, $SQL);
+    oci_execute($queery);
+    $count = oci_fetch_all($queery ,$result);
+    $percentage = $result['OFFER_PERCENTAGE'];
+    return [$count,$percentage];
+  }
   $product = $_GET['id'];
   $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
   $SQL = "SELECT * FROM PRODUCT WHERE PRODUCT_ID = $product";
   $queery = oci_parse($conn, $SQL);
   oci_execute($queery);
+  
   echo '<div class="product-display-whole-container">';
   if ($value = oci_fetch_array($queery)) {
-    echo '
+    ?>
 
       <div class="product-display-container">
         <div class="product-display-img-container">
-        <img src=./Traders/pro-img/' . $value['PRODUCT_IMAGE'] . ' alt="Img" style="width:100%">
+        <img src='./Traders/pro-img/<?php echo $value['PRODUCT_IMAGE'];?>' alt="Img" style="width:100%">
           <div class="review-rating">
             <h3>Reviews and Rating</h3>
           </div>
@@ -63,15 +69,34 @@ if (isset($_SESSION['id'])) {
         <div class="product-description">
           <div class="product-item-name">
             <p>
-              <strong>' . $value['PRODUCT_NAME'] . ' </strong>
+              <strong><?php echo $value['PRODUCT_NAME'];?>' </strong>
             </p>
           </div>
+          
           <div class="product-item-desc">
-          ' . $value['PRODUCT_DESCRIPTION'] . '
+          <?php echo $value['PRODUCT_DESCRIPTION']; ?>
           </div>
           <div class="product-item-price">
-            $ ' . $value['PRICE'] . '  &nbsp;
+            $ <?php 
+            $offerData = offerCount($product);
+
+            
+            if($offerData[0] > 0){
+              $price = $value['PRICE'];
+              $finalPrice = $price - (($offerData[1][0]/100)*$price);
+              print_r($finalPrice); 
+              echo "&nbsp;&nbsp;&nbsp;<s>$price</s>";
+              
+           
+            }else{
+              echo $value['PRICE'];
+            }
+            ?>  &nbsp;
+            
           </div>
+          <div class="offer-price">
+          </div>
+
           <div class="product-rating">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -79,24 +104,26 @@ if (isset($_SESSION['id'])) {
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
           </div>
-          <div class="product-stock-checker">Stock available : ' . $value['PRODUCT_STOCK'] . '</div>
+          <div class="product-stock-checker">Stock available : <?php echo $value['PRODUCT_STOCK']; ?></div>
           <div class="product-add-to-cart">
-          
-            <a href = "./cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
+            <a href = "./cart.php?id=<?php echo $value['PRODUCT_ID']; ?>"> <button class="btn btn1">Add to cart</button></a>
           <div class="flex-horizontal">
             <p>Available</p>
             <p>Within 3-4 days</p>
           </div>
           <div class="product-features">
-          ' . $value['ALLERGY_INFO'] . '<br />
+          <?php echo $value['ALLERGY_INFO']; ?><br />
           </div>
-        
+          
         </div>
+        
       </div>
-      ';
+
+      <?php
   }
   echo '</div>';
   ?>
+  
 
 
   <table class="table table-hover">
@@ -116,32 +143,24 @@ if (isset($_SESSION['id'])) {
     echo oci_execute($SQLIIII);
 
     while ($value = oci_fetch_array($SQLIIII)) {
-
-
     ?>
       <tr>
         <td><img src="./userimage/<?php echo  $value['USER_IMAGE']; ?>" alt="" height="100px" width="100px"></td>
         <td> <?php echo $value['USER_NAME']; ?> </td>
         <td> <?php echo $value['REVIEW_FEEDBACK']; ?> </td>
         <td> <?php echo $value['REVIEW_RATING']; ?> </td>
-
       </tr>
     <?php
-
-
     }
-
     ?>
   </table>
-  <!-- <img src="./userimage/" alt=""> -->
+      
+
 
 
   <!-- Reviews Code -->
   <div class="container">
-    <!-- <div class="post">
-      <div class="text">Thanks for rating us!</div>
-      <div class="edit">EDIT</div>
-    </div> -->
+   
     <form action="./try.php" method="POST">
       <input type="hidden" name="productid" value="<?php echo
                                                     $_GET['id'];
@@ -162,7 +181,6 @@ if (isset($_SESSION['id'])) {
           <textarea cols="30" placeholder="Describe your experience.." name="review"></textarea>
         </div>
         <div class="btn">
-          <!-- <input type="submit" value="post" name="Submit"> -->
           <button type="submit" name="Submit-rate">Post</button>
         </div>
       </div>
@@ -185,50 +203,11 @@ if (isset($_SESSION['id'])) {
       return false;
     }
   </script>
+      </div>
 
 
 
-
-
-
-
-  <!-- Subscribe Handlebar -->
-
-  <div class="Subscribe-handlebar">
-
-<div class="updates">
-    <h6 class="big-text">Dont miss out any updates<br></h6>
-    <p class="short-text">Subscribe to Huddersfax mart. Get the
-        latest product updates
-        and <br>special offers delivered right to your inbox.</p>
-</div>
-<div class="Email-placeholder">
-    <form action="" method="post">
-        <input type="email" id="email" name="myGeeks" placeholder="Enter your Email" class="Email-place">
-        <button type =  "submit" value="subscribe" name="subscribe" class="btn btn1">Suscribe </button>
-        <!-- <a href="#" class="Subscribe-text"> Subscribe</a></button>--> <BR><br> 
-    </form>
-    <?php
-    if (isset($_POST['subscribe'])) {
-        $to = $_POST['myGeeks'];
-        $subject = 'Connected with Huddersfax';
-        $message = "Hello Sir/Mam !\n\nThank you for choosing us. See you again soon.";
-        $headers = "From: huddersfaxmart@gmail.com\r\nReply-To: kharelsishir1000@gmail.com";
-        $mail_sent = mail($to, $subject, $message, $headers);
-        if ($mail_sent == true) {
-           
-        } else {
-            echo "Mail failed";
-        }
-    }
-    ?>
-</div>  
-</div>
-
-  <!-- footer -->
-  <?php
-    include('./footer.php');
-?>
+ 
 </body>
 
 </html>

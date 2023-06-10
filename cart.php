@@ -31,6 +31,7 @@ if ($queery2) {
         $SQLI2 = "SELECT * FROM CART_PRODUCT WHERE FK1_PRODUCT_ID = '$product' AND FK2_CART_ID=(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1')";
         $queery2 = oci_parse($conn, $SQLI2);
         oci_execute($queery2);
+       
 
         if($queery2){
         $value4 = oci_fetch_array($queery2);
@@ -40,22 +41,18 @@ if ($queery2) {
                 alert("Aleardy existed");
                 </script>
                 ';
-
-            }else{
+            }
+            else{
                 $SQLI = "INSERT INTO CART_PRODUCT(CART_ITEM,CART_QUANTITY,FK1_PRODUCT_ID,FK2_CART_ID) VALUES ('$cartitem','1','$product','$cartid')";
                 $queery4 = oci_parse($conn, $SQLI);
                 oci_execute($queery4);
                 if($queery4){
             
-                    // header('Location:'. $_SERVER["HTTP_REFERER"]);
+                    header('Location:'. $_SERVER["HTTP_REFERER"]);
                 }
-
             }
         }
-
         $_SESSION['cartid'] = $cartid;
-        
-       
     }else{
         $SQL = "INSERT INTO CART(FK1_USER_ID,STATUS) VALUES ('$userid','1') ";
         $queery = oci_parse($conn, $SQL);
@@ -72,7 +69,7 @@ if ($queery2) {
                 $queery4 = oci_parse($conn, $SQLI);
                 oci_execute($queery4);
                 if($queery4){
-                    // header('Location:'. $_SERVER["HTTP_REFERER"]);
+                    header('Location:' . $_SERVER["HTTP_REFERER"]);
                     
                 }
             }

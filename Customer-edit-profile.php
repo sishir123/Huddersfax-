@@ -226,11 +226,9 @@ echo '<form method="POST" action="./edit-profile.php?id='.$profile.'" enctype="m
      $QURYY = oci_parse($conn, $SQlii);
      oci_execute($QURYY);
     while ($value = oci_fetch_array($QURYY)) {
-
-
     ?>
     
-      <div class="amg-wrapper">
+    <div class="amg-wrapper">
     <img src="./userimage/<?php echo  $value['USER_IMAGE']; ?>" alt="No image Uploaded" height="100px" width="100px" class="amg">
     </div>
     

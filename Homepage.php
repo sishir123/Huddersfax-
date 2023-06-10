@@ -140,7 +140,7 @@ echo '
                     <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
                 </div>
                 <h6>'.$value['PRODUCT_NAME'].'</h6>
-                <p class="price">$Price : '.$value['PRICE'].' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                <p class="price">$Price : '.$value['PRICE'].' </p>
                 <p>'.$value['PRODUCT_DESCRIPTION'].'</p>
                 <div class="flex-verticle">
                 <a href = "cart.php?id='.$value['PRODUCT_ID'].'"> <button class="btn btn1">Add to cart</button></a>

@@ -245,7 +245,7 @@ a {
      oci_execute($queeryok);
     }
     ?>
-    <h1 class="hey">Add Offers</h1>
+    <h1 class="hey">Add Shop</h1>
     <div id="container">
     <div class="form-wrap">
 <form method="post">

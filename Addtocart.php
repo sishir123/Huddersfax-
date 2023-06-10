@@ -52,11 +52,9 @@ if (isset($_SESSION['id'])) {
      
 
         <?php
-
-
         $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
         $SQL = "SELECT * FROM CART_PRODUCT WHERE FK2_CART_ID =(SELECT CART_ID FROM CART WHERE FK1_USER_ID = '$userid' AND STATUS='1') ";
-        $queery = oci_parse($conn, $SQL);
+        $queery = oci_parse($conn, $SQL); 
         oci_execute($queery);
         $totalprice = array();
         
@@ -96,13 +94,13 @@ if (isset($_SESSION['id'])) {
                     <p class="cart-page-instock-text">In stock</p>
                   </div>
                   <div class="wrapper">
-                    <a href="./decrement.php?id=' . $values['PRODUCT_ID'] . '">-</a> <input
+                    <a class="dec-me" href="./decrement.php?id=' . $values['PRODUCT_ID'] . '">-</a> <input
                       type="number"
                       min="0"
                       max="100"
                       class="num"
                       value="' . $value['CART_QUANTITY'] . '"
-                    /><a href="./increment.php?id=' . $values['PRODUCT_ID'] . '">+</a>
+                    /><a class="inc-me" href="./increment.php?id=' . $values['PRODUCT_ID'] . '">+</a>
                   </div>
                 </div>
               </div>
@@ -110,7 +108,7 @@ if (isset($_SESSION['id'])) {
                 <a href = "delete-cart.php?id=' . $values['PRODUCT_ID'] . ' "<i class="fa-solid fa-trash"></i></a>
                 <p class="price-info">
                  Total Price : ' . $pricetotalquantity . ' <br />
-                  Discount applied :
+                 
                 </p>
               
                 </div>
@@ -145,10 +143,8 @@ if (isset($_SESSION['id'])) {
               <p><?php echo '$ ' . $price; ?></p>
             </div>
             <div class="discount-in-cart">
-              <p>Discount Applied</p>
               <?php
               $offersdisocunt = 0;
-              echo '<p> $ ' . $offersdisocunt . ' </p>'
               ?>
             </div>
             <div class="price-info">
@@ -238,5 +234,59 @@ if (isset($_SESSION['id'])) {
     include('./footer.php');
 ?>
 </body>
+<script>
+    function maxquant(){
+      console.log("eheh");
+      let decrease = document.querySelectorAll(".wrapper .dec-me");
+      let increase = document.querySelectorAll(".wrapper .inc-me");
+      
+      let quant = document.querySelectorAll(".wrapper input");
+      // increase.addEventListener("click",()=>{
+      //   let quant = quant.value;
+      //   if(quant>20){
+      //     alert("more than 20");
+      //   }
+      // })
+      let totalQ = 0;
+      quant.forEach((item,i)=>{
+        totalQ += Number(item.value);
+      })
+      console.log(totalQ);
+      // if(totalQ>19){
+      //   quant.forEach((item)=>{
+      //     // item.value = '0';
+      //   })
+      // }
+        // quant1 = quant.value;
+       increase.forEach((inc,i)=>{
+        if(totalQ>19){
+          console.log("hello");
+          // alert("more than 20");
+          inc.style.display = 'none';
+
+        }
+       })
+       decrease.forEach((dec,i)=>{
+        if(totalQ<=19){
+          console.log("hello");
+          // alert("more than 20");
+          inc.style.display = 'none';
+
+        }
+       })
+
+        
+        // console.log(quant);
+        // if(quant1>20){
+        //   // console.log("me");
+        //   alert("more than 20");
+        //   // quant.disabled = true;  
+        //   // quant.value = 0;
+        // }
+    }
+
+    maxquant();
+
+</script>
 
 </html>

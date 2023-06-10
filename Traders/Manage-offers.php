@@ -193,8 +193,8 @@ include('./session-trader.php');
     <th>Offer Start Date</th>
     <th>Offer End Date</th>
     <th>Offer Percentage</th>
-    <th>Delete</th>
     <th>Update</th>
+    <th>Delete</th>
 </tr>
 <?php
  $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');

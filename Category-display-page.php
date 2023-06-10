@@ -121,7 +121,7 @@ if(isset($_GET['categoryName'])){
                             <p class="instock-text"> '.$val['PRODUCT_STOCK'].' in Stock </p>
                         </div>
                         <h6>' . $val['PRODUCT_NAME'] . '</h6>
-                        <p class="price">$Price : ' . $val['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                        <p class="price">$Price : ' . $val['PRICE'] . ' </p>
                         <p>' . $val['PRODUCT_DESCRIPTION'] . '</p>
                         <div class="flex-verticle">
                            <a href = "cart.php?id=' . $val['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -155,7 +155,7 @@ if(isset($_GET['categoryName'])){
                         <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' </p>
                     <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -188,7 +188,7 @@ if(isset($_GET['categoryName'])){
                         <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . '</p>
                     <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -219,7 +219,7 @@ if(isset($_GET['categoryName'])){
                         <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' </p>
                     <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -252,7 +252,7 @@ if(isset($_GET['categoryName'])){
                         <p class="instock-text"> '.$valueprice['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $valueprice['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $valueprice['PRICE'] . ' </p>
                     <p>' . $valueprice['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $valueprice['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>
@@ -293,7 +293,7 @@ if(isset($_GET['categoryName'])){
                     <p class="instock-text"> '.$value['PRODUCT_STOCK'].' in Stock </p>
                     </div>
                     <h6>' . $value['PRODUCT_NAME'] . '</h6>
-                    <p class="price">$Price : ' . $value['PRICE'] . ' &nbsp;&nbsp;&nbsp;<S>$3.30</S></p>
+                    <p class="price">$Price : ' . $value['PRICE'] . ' </p>
                     <p>' . $value['PRODUCT_DESCRIPTION'] . '</p>
                     <div class="flex-verticle">
                        <a href = "cart.php?id=' . $value['PRODUCT_ID'] . '"> <button class="btn btn1">Add to cart</button></a>

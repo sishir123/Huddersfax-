@@ -122,8 +122,8 @@ if (isset($_SESSION['id'])) {
              <div class="cart-page-priceinfo">
                <a href = "delete-cart.php?id=' . $values['PRODUCT_ID'] . ' "<i class="fa-solid fa-trash"></i></a>
                <p class="price-info">
-                 <s>$ 10</s>&nbsp;' . $pricetotalquantity . ' <br />
-                 Discount applied : $5
+                 &nbsp;$' . $pricetotalquantity . ' <br />
+                 
                </p>
              
                </div>
@@ -236,10 +236,8 @@ if (isset($_SESSION['id'])) {
             <p><?php echo '$ ' . $price; ?></p>
           </div>
           <div class="discount-in-cart">
-            <p>Discount Applied</p>
             <?php
             $offersdisocunt = 0;
-            echo '<p> $ ' . $offersdisocunt . ' </p>'
             ?>
           </div>
           <div class="price-info">

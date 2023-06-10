@@ -1,8 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['id'])){
-    $userid = $_SESSION['id'];
-  
+    $userid = $_SESSION['id']; 
 }
 
 if(isset($_POST['submit-try'])){
@@ -22,7 +21,7 @@ if(isset($_POST['submit-try'])){
   if($executer){
     echo '<script>alert("Thanks for your Feedback")</script>';
     if(1){
-        // header('Location:'. $_SERVER["HTTP_REFERER"]);
+        header('Location:'. $_SERVER["HTTP_REFERER"]);
     }
   }
 }
