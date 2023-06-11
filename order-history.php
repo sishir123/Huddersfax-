@@ -248,7 +248,7 @@ if(isset($_SESSION['id'])){
  oci_execute($queeryok);
  $cartid = oci_fetch_array($queeryok);
  if(isset($cartid[0])){
-$cartid = $cartid[0];
+ $cartid = $cartid[0];
  $SQLI = "SELECT * FROM ORDER_ITEM WHERE FK1_CART_ID = $cartid";
  $queeryok22 = oci_parse($conn, $SQLI); //Check whether shop is there or not
  oci_execute($queeryok22);  //If yes then ececute
