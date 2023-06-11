@@ -1,7 +1,7 @@
 <?php
 
 $conn = oci_connect('HUDDERSFAXMART1', 'Sishir_12345', '//localhost/xe');
-    //Gather id sent from crud.php page
+    
     $activateID = $_GET['id'];
 
     $updateStatus= "UPDATE PRODUCT SET PRODUCT_STATUS = 1 WHERE PRODUCT_ID='$activateID'";

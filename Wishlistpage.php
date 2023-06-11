@@ -115,8 +115,7 @@ if(isset($_SESSION['id'])){
         <div class="wishlist-priceinfo">
         <a href = "delete-wish.php?id=' . $values['PRODUCT_ID'] .' "<i class="fa-regular fa-heart fa-2x"></i></a>
             <p class="price-info">
-                <s>$ 10</s>&nbsp;$5 <br />
-                Discount applied : $5
+            '.$values['PRICE'].'
              </p>
           </div>
       </div>
